@@ -40,33 +40,6 @@ export default class HomeScreen extends React.Component {
       },
     });
 
-    return (
-      <View>
-        <Text>{_l.t("cancel")}</Text>
-        <Checkbox
-          status={checked ? "checked" : "unchecked"}
-          onPress={() => {
-            this.setState({ checked: !checked });
-          }}
-        />
-
-        <Card>
-          <Card.Title
-            title="Card Title"
-            subtitle="Card Subtitle"
-            left={LeftContent}
-          />
-          <Card.Content>
-            <Title>Card title</Title>
-            <Paragraph>Card content</Paragraph>
-          </Card.Content>
-          <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-          <Card.Actions>
-            <Button>Cancel</Button>
-            <Button>Ok</Button>
-          </Card.Actions>
-        </Card>
-      </View>
-    );
+    return <View></View>;
   }
 }
