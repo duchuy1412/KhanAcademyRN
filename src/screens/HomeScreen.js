@@ -10,6 +10,7 @@ import {
   Paragraph,
   Checkbox,
 } from "react-native-paper";
+import _l from "../lib/i18n";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 export default class HomeScreen extends React.Component {
@@ -41,6 +42,7 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View>
+        <Text>{_l.t("cancel")}</Text>
         <Checkbox
           status={checked ? "checked" : "unchecked"}
           onPress={() => {
