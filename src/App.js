@@ -1,10 +1,9 @@
 import * as React from "react";
-import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Feather } from "@expo/vector-icons";
-import * as Screen from "./src/screens";
+import * as Screen from "./screens";
 
 const HomeStack = createStackNavigator();
 

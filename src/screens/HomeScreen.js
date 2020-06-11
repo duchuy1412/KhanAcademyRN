@@ -1,15 +1,29 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import {
+  Avatar,
+  Button,
+  Card,
+  Title,
+  Paragraph,
+  Checkbox,
+} from "react-native-paper";
 
+const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 export default class HomeScreen extends React.Component {
+  state = {
+    checked: false,
+  };
+
   _onPressSettingIcon = () => {
     this.props.navigation.navigate("Settings");
   };
 
   render() {
     const { navigation } = this.props;
+    const { checked } = this.state;
 
     navigation.setOptions({
       title: "Khan Academy",
@@ -26,12 +40,30 @@ export default class HomeScreen extends React.Component {
     });
 
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Home!</Text>
-        <Button
-          title="Go to Settings"
-          onPress={() => navigation.navigate("Settings")}
+      <View>
+        <Checkbox
+          status={checked ? "checked" : "unchecked"}
+          onPress={() => {
+            this.setState({ checked: !checked });
+          }}
         />
+
+        <Card>
+          <Card.Title
+            title="Card Title"
+            subtitle="Card Subtitle"
+            left={LeftContent}
+          />
+          <Card.Content>
+            <Title>Card title</Title>
+            <Paragraph>Card content</Paragraph>
+          </Card.Content>
+          <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+          <Card.Actions>
+            <Button>Cancel</Button>
+            <Button>Ok</Button>
+          </Card.Actions>
+        </Card>
       </View>
     );
   }
