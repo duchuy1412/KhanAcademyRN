@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import * as Screen from "./screens";
+import _l from "./lib/i18n";
 
 const HomeStack = createStackNavigator();
 
@@ -31,7 +32,7 @@ export default function App() {
           name="Home"
           component={HomeStackScreen}
           options={{
-            tabBarLabel: "Home",
+            tabBarLabel: _l.t("Home"),
             tabBarIcon: ({ color }) => (
               <Feather name="hexagon" size={24} color={color} />
             ),
@@ -41,7 +42,7 @@ export default function App() {
           name="Search"
           component={Screen.SearchScreen}
           options={{
-            tabBarLabel: "Search",
+            tabBarLabel: _l.t("Search"),
             tabBarIcon: ({ color }) => (
               <Feather name="search" size={24} color={color} />
             ),
@@ -51,7 +52,7 @@ export default function App() {
           name="Bookmarks"
           component={Screen.BookmarksScreen}
           options={{
-            tabBarLabel: "Bookmarks",
+            tabBarLabel: _l.t("Bookmarks"),
             tabBarIcon: ({ color }) => (
               <Feather name="bookmark" size={24} color={color} />
             ),
