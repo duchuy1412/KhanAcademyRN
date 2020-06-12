@@ -2,29 +2,16 @@ import React from "react";
 import { View, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  Avatar,
-  Button,
-  Card,
-  Title,
-  Paragraph,
-  Checkbox,
-} from "react-native-paper";
 import _l from "../lib/i18n";
+import Counter from "../components/Counter";
 
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 export default class HomeScreen extends React.Component {
-  state = {
-    checked: false,
-  };
-
   _onPressSettingIcon = () => {
     this.props.navigation.navigate("Settings");
   };
 
   render() {
     const { navigation } = this.props;
-    const { checked } = this.state;
 
     navigation.setOptions({
       title: "Khan Academy",
@@ -40,6 +27,10 @@ export default class HomeScreen extends React.Component {
       },
     });
 
-    return <View></View>;
+    return (
+      <View>
+        <Counter />
+      </View>
+    );
   }
 }

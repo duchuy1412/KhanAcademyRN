@@ -8,7 +8,7 @@ i18n.fallbacks = true;
 
 i18n.translations = {
   en: {
-    Cancel: "Cancle",
+    Cancel: "Cancel",
     Edit: "Edit",
     Home: "Home",
     Search: "Search",
