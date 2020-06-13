@@ -15,6 +15,7 @@ i18n.translations = {
     Bookmarks: "Bookmarks",
     Settings: "Settings",
     "My courses": "My courses",
+    "Recent lessons": "Recent lessons",
   },
   vi: {
     Cancel: "Huỷ",

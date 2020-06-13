@@ -6,6 +6,7 @@ import Counter from "../components/Counter";
 
 import _l from "../lib/i18n";
 import firebase from "../lib/firebase";
+import RecentLessons from "../components/RecentLessons/RecentLessons";
 export default class HomeScreen extends React.Component {
   _onPressSettingIcon = () => {
     this.props.navigation.navigate("Settings");
@@ -17,12 +18,12 @@ export default class HomeScreen extends React.Component {
     //   highscore: 123,
     //   name: "Hoc",
     // });
-    firebase
-      .database()
-      .ref("topic/")
-      .on("value", (snapshot) => {
-        console.log(snapshot.val());
-      });
+    // firebase
+    //   .database()
+    //   .ref("topic/")
+    //   .on("value", (snapshot) => {
+    //     console.log(snapshot.val());
+    //   });
   };
   render() {
     const { navigation } = this.props;
@@ -43,8 +44,7 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View>
-        <Button title="Add" onPress={this.clickAdd}></Button>
-        <Counter />
+        <RecentLessons />
       </View>
     );
   }
