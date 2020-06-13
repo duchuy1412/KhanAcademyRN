@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import _l from "../lib/i18n";
 import Counter from "../components/Counter";
+import { Button } from "react-native-paper";
 
 export default class HomeScreen extends React.Component {
   _onPressSettingIcon = () => {
@@ -29,7 +30,13 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View>
-        <Counter />
+        <Button
+          icon="camera"
+          mode="contained"
+          onPress={() => navigation.navigate("CourseList")}
+        >
+          Press me
+        </Button>
       </View>
     );
   }
