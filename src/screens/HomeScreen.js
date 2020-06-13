@@ -1,15 +1,29 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
-import _l from "../lib/i18n";
 import Counter from "../components/Counter";
 
+import _l from "../lib/i18n";
+import firebase from "../lib/firebase";
 export default class HomeScreen extends React.Component {
   _onPressSettingIcon = () => {
     this.props.navigation.navigate("Settings");
   };
 
+  async componentDidMount() {}
+  clickAdd = async () => {
+    // firebase.database().ref("users/").set({
+    //   highscore: 123,
+    //   name: "Hoc",
+    // });
+    firebase
+      .database()
+      .ref("topic/")
+      .on("value", (snapshot) => {
+        console.log(snapshot.val());
+      });
+  };
   render() {
     const { navigation } = this.props;
 
@@ -29,7 +43,7 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View>
-        <Counter />
+        <Button title="Add" onPress={this.clickAdd}></Button>
       </View>
     );
   }
