@@ -44,6 +44,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View>
         <Button title="Add" onPress={this.clickAdd}></Button>
+        <Counter />
       </View>
     );
   }
