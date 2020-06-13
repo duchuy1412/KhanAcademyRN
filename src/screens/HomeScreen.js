@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Button } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
-import Counter from "../components/Counter";
+import { Button as MDButton } from "react-native-paper";
 
 import _l from "../lib/i18n";
 import firebase from "../lib/firebase";
@@ -43,8 +43,14 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View>
+        <MDButton
+          icon="folder"
+          mode="contained"
+          onPress={() => navigation.navigate("CourseList")}
+        >
+          Go to Course List
+        </MDButton>
         <Button title="Add" onPress={this.clickAdd}></Button>
-        <Counter />
       </View>
     );
   }
