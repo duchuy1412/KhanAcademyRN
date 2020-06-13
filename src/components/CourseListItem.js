@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text } from "react-native";
+import { View, Image } from "react-native";
 import { useTheme } from "react-native-paper";
 import { Divider, List } from "react-native-paper";
 

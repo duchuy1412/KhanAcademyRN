@@ -14,9 +14,6 @@ export default class CourseListScreen extends React.Component {
           renderItem={({ item }) => <CourseListItem title={item.courseName} />}
           keyExtractor={(item, index) => item.key}
         />
-        {/* {courseList.map((course, index) => {
-          return <CourseListItem key={index} title={course.courseName} />;
-        })} */}
       </View>
     );
   }
