@@ -11,7 +11,7 @@ export default class CourseListScreen extends React.Component {
       <View style={{ backgroundColor: "#fff" }}>
         <FlatList
           data={courseList}
-          renderItem={({ item }) => <CourseListItem title={item.courseName} />}
+          renderItem={({ item }) => <CourseListItem title={item.name} />}
           keyExtractor={(item, index) => item.key}
         />
       </View>
