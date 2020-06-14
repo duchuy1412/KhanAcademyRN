@@ -46,7 +46,9 @@ export default class HomeScreen extends React.Component {
         <MDButton
           icon="folder"
           mode="contained"
-          onPress={() => navigation.navigate("CourseList")}
+          onPress={() =>
+            navigation.navigate("CourseList", { topicName: "Math" })
+          }
         >
           Go to Course List
         </MDButton>

@@ -3,6 +3,7 @@ import SettingScreen from "./SettingScreen";
 import SearchScreen from "./SearchScreen";
 import BookmarksScreen from "./BookmarksScreen";
 import CourseListScreen from "./CourseListScreen";
+import WelcomeScreen from "./WelcomeScreen";
 
 export {
   HomeScreen,
@@ -10,4 +11,5 @@ export {
   SearchScreen,
   BookmarksScreen,
   CourseListScreen,
+  WelcomeScreen,
 };

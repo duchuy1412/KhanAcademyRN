@@ -1,30 +1,33 @@
 import React from "react";
 import { View, Image } from "react-native";
-import { useTheme } from "react-native-paper";
 import { Divider, List } from "react-native-paper";
 
 function CourseListItem(props) {
-  const { colors } = useTheme();
+  let icon = props.icon;
+
+  function _onPress() {
+    console.log("Pressed" + props.title);
+  }
+
   return (
     <View>
-      {/* <Text style={{ color: "red" }}>{this.props.title}</Text> */}
       <List.Item
-        style={{ padding: 15 }}
+        style={{ padding: 10 }}
         title={props.title}
-        titleStyle={{ fontWeight: "bold" }}
+        titleStyle={{ fontWeight: "bold", paddingLeft: 5 }}
         left={(props) => (
           <Image
             style={{
               borderRadius: 45,
               height: 50,
               width: 50,
-              borderWidth: 2,
-              borderColor: colors.primary,
             }}
-            source={require("../assets/1stgrade.png")}
+            source={icon ? { uri: icon } : require("../assets/1stgrade.png")}
           />
         )}
-        onPress={() => console.log("Pressed" + props.title)}
+        onPress={() => {
+          _onPress();
+        }}
       />
       <Divider inset={true} />
     </View>

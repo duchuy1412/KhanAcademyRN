@@ -8,11 +8,10 @@ import _l from "./lib/i18n";
 
 const HomeStack = createStackNavigator();
 
-function HomeStackScreen() {
+function Home() {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={Screen.HomeScreen} />
-      <HomeStack.Screen name="Settings" component={Screen.SettingScreen} />
       <HomeStack.Screen name="CourseList" component={Screen.CourseListScreen} />
     </HomeStack.Navigator>
   );
@@ -20,46 +19,62 @@ function HomeStackScreen() {
 
 const Tab = createMaterialBottomTabNavigator();
 
+function TabNavigator() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      activeColor="#2962ff"
+      inactiveColor="#e0e0e0"
+      barStyle={{ backgroundColor: "#fff" }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarLabel: _l.t("Home"),
+          tabBarIcon: ({ color }) => (
+            <Feather name="hexagon" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={Screen.SearchScreen}
+        options={{
+          tabBarLabel: _l.t("Search"),
+          tabBarIcon: ({ color }) => (
+            <Feather name="search" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Bookmarks"
+        component={Screen.BookmarksScreen}
+        options={{
+          tabBarLabel: _l.t("Bookmarks"),
+          tabBarIcon: ({ color }) => (
+            <Feather name="bookmark" size={24} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+const Root = createStackNavigator();
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Home"
-        activeColor="#2962ff"
-        inactiveColor="#e0e0e0"
-        barStyle={{ backgroundColor: "#fff" }}
-      >
-        <Tab.Screen
-          name="Home"
-          component={HomeStackScreen}
-          options={{
-            tabBarLabel: _l.t("Home"),
-            tabBarIcon: ({ color }) => (
-              <Feather name="hexagon" size={24} color={color} />
-            ),
-          }}
+      <Root.Navigator initialRouteName="TabNavigator">
+        <Root.Screen name="Settings" component={Screen.SettingScreen} />
+        <Root.Screen name="Welcome" component={Screen.WelcomeScreen} />
+        <Root.Screen
+          options={{ headerShown: false }}
+          name="TabNavigator"
+          component={TabNavigator}
         />
-        <Tab.Screen
-          name="Search"
-          component={Screen.SearchScreen}
-          options={{
-            tabBarLabel: _l.t("Search"),
-            tabBarIcon: ({ color }) => (
-              <Feather name="search" size={24} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Bookmarks"
-          component={Screen.BookmarksScreen}
-          options={{
-            tabBarLabel: _l.t("Bookmarks"),
-            tabBarIcon: ({ color }) => (
-              <Feather name="bookmark" size={24} color={color} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+      </Root.Navigator>
     </NavigationContainer>
   );
 }
