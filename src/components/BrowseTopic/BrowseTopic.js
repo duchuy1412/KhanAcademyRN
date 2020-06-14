@@ -1,45 +1,21 @@
 import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
-import { List, Divider, Title, Subheading } from "react-native-paper";
-import _l from "../../lib/i18n";
+import { View, StyleSheet, FlatList } from "react-native";
 import InfiniteListRow from "../List/InfiniteListRow";
+import { Divider, List } from "react-native-paper";
+import _l from "../../lib/i18n";
 
-const recentLessions = [
-  {
-    key: "1",
-    name: "Counting",
-    icon: "",
-    description: "Counting",
-  },
-  {
-    key: "2",
-    name: "Counting",
-    icon: "",
-    description: "Counting",
-  },
-  {
-    key: "3",
-    name: "Counting",
-    icon: "",
-    description: "Counting",
-  },
-];
-
-class RecentLessons extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+class BrowseTopic extends React.Component {
   render() {
+    const { navigation, data } = this.props;
     return (
-      <View>
+      <View style={{ marginTop: 0 }}>
         <List.Section style={styles.container}>
           <List.Subheader style={styles.subHeader}>
-            {_l.t("Recent lessons")}
+            {_l.t("Browse Khan Academy")}
           </List.Subheader>
           <Divider inset={false} />
           <FlatList
-            data={recentLessions}
+            data={data}
             keyExtractor={(item) => item.key}
             ItemSeparatorComponent={() => <Divider inset={true} />}
             renderItem={(item) => (
@@ -48,8 +24,7 @@ class RecentLessons extends React.Component {
                 key={item.key}
                 inset={true}
                 onPressItem={() => {
-                  // go to recent lessons
-                  // this.props.navigation.navigate("CourseList");
+                  navigation.navigate("CourseList");
                 }}
               />
             )}
@@ -60,7 +35,7 @@ class RecentLessons extends React.Component {
   }
 }
 
-export default RecentLessons;
+export default BrowseTopic;
 
 const styles = StyleSheet.create({
   container: {

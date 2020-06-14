@@ -1,31 +1,23 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
-import { List, Divider, Title, Subheading } from "react-native-paper";
+import { List, Divider, Button } from "react-native-paper";
 import _l from "../../lib/i18n";
 import InfiniteListRow from "../List/InfiniteListRow";
 
-const recentLessions = [
+const myCourses = [
   {
     key: "1",
-    name: "Counting",
+    name: "Algebra basics",
     icon: "",
-    description: "Counting",
   },
   {
     key: "2",
-    name: "Counting",
+    name: "Statistics and probability",
     icon: "",
-    description: "Counting",
-  },
-  {
-    key: "3",
-    name: "Counting",
-    icon: "",
-    description: "Counting",
   },
 ];
 
-class RecentLessons extends React.Component {
+class MyCourses extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -34,12 +26,17 @@ class RecentLessons extends React.Component {
     return (
       <View>
         <List.Section style={styles.container}>
-          <List.Subheader style={styles.subHeader}>
-            {_l.t("Recent lessons")}
-          </List.Subheader>
+          <View styles={styles.titleList}>
+            <List.Subheader style={styles.subHeader}>
+              {_l.t("My courses")}
+            </List.Subheader>
+            {/* <Button mode="outlined" compact={false} uppercase={false}>
+              {_l.t("Edit")}
+            </Button> */}
+          </View>
           <Divider inset={false} />
           <FlatList
-            data={recentLessions}
+            data={myCourses}
             keyExtractor={(item) => item.key}
             ItemSeparatorComponent={() => <Divider inset={true} />}
             renderItem={(item) => (
@@ -60,7 +57,7 @@ class RecentLessons extends React.Component {
   }
 }
 
-export default RecentLessons;
+export default MyCourses;
 
 const styles = StyleSheet.create({
   container: {
@@ -70,8 +67,14 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
   },
   subHeader: {
-    fontWeight: "500",
+    fontWeight: "bold",
     color: "black",
     fontSize: 16,
+  },
+  titleList: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignContent: "center",
+    padding: 8,
   },
 });
