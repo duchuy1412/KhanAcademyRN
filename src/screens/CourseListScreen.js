@@ -36,18 +36,19 @@ class CourseListScreen extends React.Component {
             <ActivityIndicator
               animating={true}
               size="large"
-              color={Colors.red800}
+              color={Colors.blue500}
             />
           }
         />
         <FlatList
-          data={courseList}
+          data={courses}
           ItemSeparatorComponent={() => <Divider inset={true} />}
           renderItem={(item) => (
             <InfiniteListRow
               data={item}
               key={item.key}
               inset={true}
+              icon={item.icon}
               onPressItem={() => {
                 // go to recent lessons
                 // this.props.navigation.navigate("CourseList");

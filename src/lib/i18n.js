@@ -2,7 +2,7 @@ import * as Localization from "expo-localization";
 import i18n from "i18n-js";
 // Set the key-value pairs for the different languages you want to support.
 // i18n.locale = Localization.locale;
-i18n.locale = "en"; // change to vi if need to use Vietnamese
+i18n.locale = "vi"; // change to vi if need to use Vietnamese
 
 i18n.fallbacks = true;
 
@@ -17,6 +17,10 @@ i18n.translations = {
     "My courses": "My courses",
     "Recent lessons": "Recent lessons",
     "Browse Khan Academy": "Browse Khan Academy",
+    "Sign in": "Sign in",
+    "Sign up": "Sign up",
+    "Language & Regions": "Language & Regions",
+    "Download settings": '"Download settings',
   },
   vi: {
     Cancel: "Huỷ",
@@ -26,7 +30,12 @@ i18n.translations = {
     Bookmarks: "Đánh dấu",
     Settings: "Cài đặt",
     "My courses": "Khoá học của tôi",
+    "Recent lessons": "Khoá học gần đây",
     "Browse Khan Academy": "Lựa chọn chủ đề",
+    "Sign in": "Đăng nhập",
+    "Sign up": "Đăng ký",
+    "Language & Regions": "Ngôn ngữ & khu vực",
+    "Download settings": "Cài đặt tải xuống",
   },
 };
 
