@@ -39,7 +39,7 @@ class MyCourses extends React.Component {
             data={myCourses}
             keyExtractor={(item) => item.key}
             ItemSeparatorComponent={() => <Divider inset={true} />}
-            renderItem={(item) => (
+            renderItem={({ item }) => (
               <InfiniteListRow
                 data={item}
                 key={item.key}

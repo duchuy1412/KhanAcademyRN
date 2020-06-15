@@ -42,7 +42,7 @@ class RecentLessons extends React.Component {
             data={recentLessions}
             keyExtractor={(item) => item.key}
             ItemSeparatorComponent={() => <Divider inset={true} />}
-            renderItem={(item) => (
+            renderItem={({ item }) => (
               <InfiniteListRow
                 data={item}
                 key={item.key}

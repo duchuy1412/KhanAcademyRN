@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import account from "./account";
+import courseReducer from "./courseReducer";
 
 export default combineReducers({
-  account,
+  courseReducer,
 });
