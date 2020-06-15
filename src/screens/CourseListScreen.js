@@ -1,8 +1,8 @@
 import React from "react";
 import { View, FlatList } from "react-native";
 import _l from "../lib/i18n";
-import CourseListItem from "../components/CourseList/CourseListItem";
-import topic from "../../data/topic";
+import InfiniteListRow from "../components/List/InfiniteListRow";
+import { Divider } from "react-native-paper";
 import { connect } from "react-redux";
 import { fetchCourses } from "../actions/courseActions";
 import { ActivityIndicator, Colors } from "react-native-paper";
@@ -36,14 +36,25 @@ class CourseListScreen extends React.Component {
             <ActivityIndicator
               animating={true}
               size="large"
-              color={Colors.red800}
+              color={Colors.blue500}
             />
           }
         />
         <FlatList
           data={courses}
-          renderItem={({ item }) => (
-            <CourseListItem title={item.name} icon={item.icon} />
+          ItemSeparatorComponent={() => <Divider inset={true} />}
+          renderItem={(item) => (
+            <InfiniteListRow
+              data={item}
+              key={item.key}
+              inset={true}
+              icon={item.icon}
+              onPressItem={() => {
+                // go to recent lessons
+                // this.props.navigation.navigate("CourseList");
+                console.log("Hello");
+              }}
+            />
           )}
           keyExtractor={(item, index) => item.key}
         />
