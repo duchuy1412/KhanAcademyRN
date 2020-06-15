@@ -22,13 +22,13 @@ const Tab = createMaterialBottomTabNavigator();
 function TabNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeTab"
       activeColor="#2962ff"
       inactiveColor="#e0e0e0"
       barStyle={{ backgroundColor: "#fff" }}
     >
       <Tab.Screen
-        name="Home"
+        name="HomeTab"
         component={Home}
         options={{
           tabBarLabel: _l.t("Home"),

@@ -22,7 +22,7 @@ function CourseListItem(props) {
               height: 50,
               width: 50,
             }}
-            source={icon ? { uri: icon } : require("../assets/1stgrade.png")}
+            source={icon ? { uri: icon } : require("../../assets/1stgrade.png")}
           />
         )}
         onPress={() => {

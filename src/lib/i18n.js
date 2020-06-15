@@ -15,6 +15,8 @@ i18n.translations = {
     Bookmarks: "Bookmarks",
     Settings: "Settings",
     "My courses": "My courses",
+    "Recent lessons": "Recent lessons",
+    "Browse Khan Academy": "Browse Khan Academy",
   },
   vi: {
     Cancel: "Huỷ",
@@ -24,6 +26,7 @@ i18n.translations = {
     Bookmarks: "Đánh dấu",
     Settings: "Cài đặt",
     "My courses": "Khoá học của tôi",
+    "Browse Khan Academy": "Lựa chọn chủ đề",
   },
 };
 
