@@ -18,13 +18,16 @@ class BrowseTopic extends React.Component {
             data={data}
             keyExtractor={(item) => item.key}
             ItemSeparatorComponent={() => <Divider inset={true} />}
-            renderItem={(item) => (
+            renderItem={({ item, index }) => (
               <InfiniteListRow
                 data={item}
                 key={item.key}
                 inset={true}
                 onPressItem={() => {
-                  navigation.navigate("CourseList");
+                  navigation.navigate("CourseList", {
+                    topicName: item.name,
+                    topicIndex: index,
+                  });
                 }}
               />
             )}

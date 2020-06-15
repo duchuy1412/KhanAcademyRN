@@ -10,9 +10,9 @@ const InfiniteListRow = (props) => {
     <View>
       <List.Item
         style={{ padding: 15 }}
-        title={data.item.name}
+        title={data.name}
         titleStyle={{ fontWeight: "bold" }}
-        description={data.item.description}
+        description={data.description}
         left={() => (
           <Image
             style={{

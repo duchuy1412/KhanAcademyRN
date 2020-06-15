@@ -64,7 +64,6 @@ export default class HomeScreen extends React.Component {
       },
     });
 
-    
     return (
       <View>
         <ScrollView
