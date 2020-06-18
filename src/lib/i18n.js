@@ -2,7 +2,7 @@ import * as Localization from "expo-localization";
 import i18n from "i18n-js";
 // Set the key-value pairs for the different languages you want to support.
 // i18n.locale = Localization.locale;
-i18n.locale = "vi"; // change to vi if need to use Vietnamese
+i18n.locale = "en"; // change to vi if need to use Vietnamese
 
 i18n.fallbacks = true;
 
@@ -20,7 +20,17 @@ i18n.translations = {
     "Sign in": "Sign in",
     "Sign up": "Sign up",
     "Language & Regions": "Language & Regions",
-    "Download settings": '"Download settings',
+    "Download settings": "Download settings",
+    titleWelcome1: "A world class education for anyone, anywhere. 100% free.",
+    titleWelcome2:
+      "We'll keep your progress in sync no matter \n what phone, device, or computer you're using.",
+    "Continue with Google": "Continue with Google",
+    "Continue with Facebook": "Continue with Facebook",
+    "Sign up with email": "Sign up with email",
+    "Already a user?": "Already a user?",
+    OR: "OR",
+    "Enter an email address": "Enter an email address",
+    Password: "Password",
   },
   vi: {
     Cancel: "Huỷ",
@@ -36,6 +46,15 @@ i18n.translations = {
     "Sign up": "Đăng ký",
     "Language & Regions": "Ngôn ngữ & khu vực",
     "Download settings": "Cài đặt tải xuống",
+    titleWelcome1: "A world class education for anyone, anywhere. 100% free",
+    titleWelcome2:
+      "We'll keep your progress in sync no matter what phone, device, or computer you're using.",
+    "Continue with Google": "Continue with Google",
+    "Continue with Facebook": "Continue with Facebook",
+    "Sign up with email": "Sign up with email",
+    OR: "HOẶC",
+    "Enter an email address": "Nhập địa chỉ email",
+    Password: "Mật khẩu",
   },
 };
 

@@ -17,6 +17,9 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "facebookScheme": "fb1186124071747489",
+    "facebookAppId": "1186124071747489",
+    "facebookDisplayName": "Expo-firebase-auth"
   }
 }
