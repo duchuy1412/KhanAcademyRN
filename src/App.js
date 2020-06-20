@@ -13,6 +13,10 @@ function Home() {
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={Screen.HomeScreen} />
       <HomeStack.Screen name="CourseList" component={Screen.CourseListScreen} />
+      <HomeStack.Screen
+        name="CourseDetail"
+        component={Screen.CourseDetailScreen}
+      />
     </HomeStack.Navigator>
   );
 }

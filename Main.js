@@ -1,10 +1,35 @@
 import * as React from "react";
-import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+import {
+  configureFonts,
+  DefaultTheme,
+  Provider as PaperProvider,
+} from "react-native-paper";
 import App from "./src/App";
 import { registerRootComponent } from "expo";
 import { Provider as StoreProvider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import store from "./src/store/store";
+
+const fontConfig = {
+  default: {
+    regular: {
+      fontFamily: "sans-serif",
+      fontWeight: "normal",
+    },
+    medium: {
+      fontFamily: "sans-serif-medium",
+      fontWeight: "normal",
+    },
+    light: {
+      fontFamily: "sans-serif-light",
+      fontWeight: "normal",
+    },
+    thin: {
+      fontFamily: "sans-serif-thin",
+      fontWeight: "normal",
+    },
+  },
+};
 
 const theme = {
   ...DefaultTheme,
@@ -13,13 +38,14 @@ const theme = {
     ...DefaultTheme.colors,
     primary: "#2962ff",
     accent: "#2962ff",
-    background: "#000",
-    surface: "#000",
+    background: "#fff",
+    surface: "#fff",
     disabled: "#e0e0e0",
     text: "#000",
     placeholder: "#e0e0e0",
-    backdrop: "#000",
+    backdrop: "#fff",
   },
+  fonts: configureFonts(fontConfig),
 };
 
 export default function Main() {

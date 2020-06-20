@@ -21,6 +21,8 @@ i18n.translations = {
     "Sign up": "Sign up",
     "Language & Regions": "Language & Regions",
     "Download settings": '"Download settings',
+    "Up next": "Up next",
+    "Mastery Points": "Mastery Points",
   },
   vi: {
     Cancel: "Huỷ",
@@ -36,6 +38,8 @@ i18n.translations = {
     "Sign up": "Đăng ký",
     "Language & Regions": "Ngôn ngữ & khu vực",
     "Download settings": "Cài đặt tải xuống",
+    "Up next": "Tiếp theo",
+    "Mastery Points": "Điểm thành thạo",
   },
 };
 

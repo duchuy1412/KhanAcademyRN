@@ -4,6 +4,7 @@ import SearchScreen from "./SearchScreen";
 import BookmarksScreen from "./BookmarksScreen";
 import CourseListScreen from "./CourseListScreen";
 import WelcomeScreen from "./WelcomeScreen";
+import CourseDetailScreen from "./CourseDetailScreen";
 
 export {
   HomeScreen,
@@ -12,4 +13,5 @@ export {
   BookmarksScreen,
   CourseListScreen,
   WelcomeScreen,
+  CourseDetailScreen,
 };
