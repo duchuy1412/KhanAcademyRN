@@ -11,12 +11,20 @@ export class SignIn extends Component {
       disableSignIn: true,
       errorEmail: false,
       errorPassword: false,
+      email: "",
+      password: "",
     };
   }
 
   handleSignInFacebook = () => {};
   handleSignInGoogle = () => {};
   handleOnPressSignIn = () => {};
+  _onChangeEmail = (e) => {
+    this.setState({ email: e.target.value });
+  };
+  _onChangePassword = (e) => {
+    this.setState({ password: e.target.value });
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -52,6 +60,8 @@ export class SignIn extends Component {
             textContentType="emailAddress"
             placeholder={_l.t("Enter an email address")}
             error={this.state.errorEmail}
+            value={this.state.email}
+            onChange={this._onChangeEmail}
           ></TextInput>
           <TextInput
             label={_l.t("Password")}
@@ -61,6 +71,8 @@ export class SignIn extends Component {
             placeholder={_l.t("Password")}
             secureTextEntry={true}
             error={this.state.errorPassword}
+            value={this.state.password}
+            onChange={this._onChangePassword}
           ></TextInput>
         </View>
 
