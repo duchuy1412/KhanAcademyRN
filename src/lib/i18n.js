@@ -23,6 +23,7 @@ i18n.translations = {
     "Download settings": '"Download settings',
     "Up next": "Up next",
     "Mastery Points": "Mastery Points",
+    points: "points",
   },
   vi: {
     Cancel: "Huỷ",
@@ -40,6 +41,7 @@ i18n.translations = {
     "Download settings": "Cài đặt tải xuống",
     "Up next": "Tiếp theo",
     "Mastery Points": "Điểm thành thạo",
+    points: "điểm",
   },
 };
 

@@ -1,12 +1,11 @@
 import React from "react";
-import { View, FlatList, StatusBar } from "react-native";
+import { View, FlatList } from "react-native";
 import _l from "../lib/i18n";
 import LessonRow from "../components/List/LessonRow";
 import ProgressingRow from "../components/List/ProgressingRow";
 import { Divider, List } from "react-native-paper";
 import { connect } from "react-redux";
 import { fetchLessons } from "../actions/lessonActions";
-import { ActivityIndicator, Colors } from "react-native-paper";
 import CustomSpinner from "../components/CustomSpinner";
 
 class CourseDetailScreen extends React.Component {
@@ -18,6 +17,15 @@ class CourseDetailScreen extends React.Component {
     const { topicIndex, courseIndex } = this.props.route.params;
     this.props.dispatch(fetchLessons(topicIndex, courseIndex));
   }
+
+  getMaxMasteryPoints = (lessons) => {
+    let maxPoints = 0;
+    if (lessons != null)
+      lessons.forEach((lesson) => {
+        maxPoints += lesson.points;
+      });
+    return maxPoints;
+  };
 
   render() {
     const { error, loading, lessons } = this.props;
@@ -33,19 +41,29 @@ class CourseDetailScreen extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
-        {/* <StatusBar backgroundColor="#000" /> */}
         <CustomSpinner visible={loading} />
 
         <FlatList
           showsVerticalScrollIndicator={false}
           data={lessons}
-          ListHeaderComponent={() => <ProgressingRow title="900/1000" />}
+          ListHeaderComponent={() => (
+            <ProgressingRow
+              currentPoints={0} // Pass current point of course here
+              maxPoints={this.getMaxMasteryPoints(lessons)}
+            />
+          )}
           ListHeaderComponentStyle={{ marginBottom: 20 }}
           ItemSeparatorComponent={() => <Divider />}
-          renderItem={({ item }) => {
+          renderItem={({ item, index }) => {
             return (
               <View style={{ paddingBottom: 20 }}>
-                <LessonRow title={item.name} icon={item.icon} upNext={false} />
+                <LessonRow
+                  title={item.name}
+                  icon={item.icon}
+                  upNext={false}
+                  points={100} // Pass current point of lesson here
+                  maxPoints={lessons[index].points}
+                />
               </View>
             );
           }}

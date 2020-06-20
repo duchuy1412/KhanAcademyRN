@@ -6,7 +6,7 @@ import _l from "../../lib/i18n";
 
 function LessonRow(props) {
   const { colors, fonts } = useTheme();
-  const { title, icon, upNext } = props;
+  const { title, icon, upNext, points, maxPoints } = props;
 
   return (
     <View style={{ backgroundColor: colors.background }}>
@@ -24,7 +24,7 @@ function LessonRow(props) {
           { fontSize: 18 },
           upNext ? { color: colors.primary } : null,
         ]}
-        description="Description"
+        description={points + "/" + maxPoints + " " + _l.t("points")}
         left={(props) => (
           <Image
             style={{

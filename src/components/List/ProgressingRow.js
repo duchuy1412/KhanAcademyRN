@@ -5,12 +5,12 @@ import _l from "../../lib/i18n";
 
 function ProgressingRow(props) {
   const { colors, fonts } = useTheme();
-  const { title } = props;
+  const { currentPoints, maxPoints } = props;
 
   return (
     <View style={{ backgroundColor: colors.background }}>
       <List.Item
-        title={title + " (0%)"}
+        title={currentPoints + "/" + maxPoints + " (0%)"}
         titleNumberOfLines={2}
         titleStyle={[fonts.medium, { fontSize: 18 }]}
         description={_l.t("Mastery Points") + " (Level 1)"}
