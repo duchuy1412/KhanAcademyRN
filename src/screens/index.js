@@ -5,6 +5,7 @@ import BookmarksScreen from "./BookmarksScreen";
 import CourseListScreen from "./CourseListScreen";
 import WelcomeScreen from "./WelcomeScreen";
 import SignInScreen from "./SignIn";
+import SignUpScreen from "./SignUpScreen";
 
 export {
   HomeScreen,
@@ -14,4 +15,5 @@ export {
   CourseListScreen,
   WelcomeScreen,
   SignInScreen,
+  SignUpScreen,
 };

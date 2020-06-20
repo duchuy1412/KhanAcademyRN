@@ -3,7 +3,12 @@ import { View, StyleSheet } from "react-native";
 import { Colors, Button, Text, Caption } from "react-native-paper";
 import _l from "../lib/i18n";
 export default class SettingScreen extends React.Component {
-  
+  handlePressSignUpEmail = () => {
+    const { navigation } = this.props;
+    navigation.navigate("Sign up");
+  };
+  handlePressSignUpFacebook = () => {};
+  handlePressSignUpGoogle = () => {};
   render() {
     const { navigation } = this.props;
 
@@ -15,8 +20,10 @@ export default class SettingScreen extends React.Component {
           icon="google"
           mode="contained"
           uppercase={false}
+          contentStyle={{ margin: 8 }}
           style={styles.button}
           color={Colors.red900}
+          onPress={this.handlePressSignUpGoogle}
         >
           {_l.t("Continue with Google")}
         </Button>
@@ -24,16 +31,20 @@ export default class SettingScreen extends React.Component {
           icon="facebook"
           mode="contained"
           uppercase={false}
+          contentStyle={{ margin: 8 }}
           style={styles.button}
           color={Colors.blue900}
+          onPress={this.handlePressSignUpFacebook}
         >
           {_l.t("Continue with Facebook")}
         </Button>
         <Button
           icon="email"
           mode="contained"
+          contentStyle={{ margin: 8 }}
           uppercase={false}
           style={styles.button}
+          onPress={this.handlePressSignUpEmail}
         >
           {_l.t("Sign up with email")}
         </Button>
@@ -41,6 +52,7 @@ export default class SettingScreen extends React.Component {
         <Button
           mode="outlined"
           uppercase={false}
+          contentStyle={{ margin: 8 }}
           style={styles.button}
           onPress={() => {
             navigation.navigate("Sign in");
@@ -62,8 +74,7 @@ const styles = StyleSheet.create({
   button: {
     width: "100%",
     marginBottom: 12,
-    paddingBottom: 8,
-    paddingTop: 8,
+
     borderRadius: 4,
   },
   caption: {

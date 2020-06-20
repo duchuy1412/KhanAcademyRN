@@ -31,6 +31,11 @@ i18n.translations = {
     OR: "OR",
     "Enter an email address": "Enter an email address",
     Password: "Password",
+    titleSignUp: "Tell us a little bit about yourself to create your account.",
+    "First name": "First name",
+    "Last name": "Last name",
+    "Confirm Password": "Confirm password",
+    "Create new account": "Create new account",
   },
   vi: {
     Cancel: "Huỷ",
@@ -49,12 +54,14 @@ i18n.translations = {
     titleWelcome1: "A world class education for anyone, anywhere. 100% free",
     titleWelcome2:
       "We'll keep your progress in sync no matter what phone, device, or computer you're using.",
-    "Continue with Google": "Continue with Google",
-    "Continue with Facebook": "Continue with Facebook",
-    "Sign up with email": "Sign up with email",
+    "Continue with Google": "Tiếp tục với Google",
+    "Continue with Facebook": "Tiếp tục với Facebook",
+    "Sign up with email": "Đăng ký với email",
     OR: "HOẶC",
     "Enter an email address": "Nhập địa chỉ email",
     Password: "Mật khẩu",
+    titleSignUp: "Giới thiệu một số thông tin về bạn để tạo một tài khoản mới.",
+    "Confirm Password": "Confirm password",
   },
 };
 

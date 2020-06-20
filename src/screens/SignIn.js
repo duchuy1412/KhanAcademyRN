@@ -24,6 +24,7 @@ export class SignIn extends Component {
           icon="google"
           mode="contained"
           uppercase={false}
+          contentStyle={{ margin: 8 }}
           style={styles.button}
           color={Colors.red900}
           onPress={this.handleSignInGoogle}
@@ -34,6 +35,7 @@ export class SignIn extends Component {
           icon="facebook"
           mode="contained"
           uppercase={false}
+          contentStyle={{ margin: 8 }}
           style={styles.button}
           color={Colors.blue900}
           onPress={this.handleSignInFacebook}
@@ -66,6 +68,7 @@ export class SignIn extends Component {
           mode="contained"
           disabled={this.state.disableSignIn}
           uppercase={false}
+          contentStyle={{ margin: 8 }}
           style={[styles.button, { marginTop: 14 }]}
           onPress={this.handleOnPressSignIn}
         >
@@ -87,8 +90,6 @@ const styles = StyleSheet.create({
   button: {
     width: "100%",
     marginBottom: 12,
-    paddingBottom: 8,
-    paddingTop: 8,
     borderRadius: 4,
   },
   caption: {
