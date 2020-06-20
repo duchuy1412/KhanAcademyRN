@@ -22,8 +22,6 @@ const InfiniteListRow = (props) => {
                 borderRadius: 45,
                 height: 50,
                 width: 50,
-                borderWidth: 1,
-                borderColor: colors.primary,
               }}
               source={
                 icon ? { uri: icon } : require("../../assets/1stgrade.png")

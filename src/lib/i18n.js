@@ -36,6 +36,10 @@ i18n.translations = {
     "Last name": "Last name",
     "Confirm Password": "Confirm password",
     "Create new account": "Create new account",
+    "Download settings": '"Download settings',
+    "Up next": "Up next",
+    "Mastery Points": "Mastery Points",
+    points: "points",
   },
   vi: {
     Cancel: "Huỷ",
@@ -62,6 +66,9 @@ i18n.translations = {
     Password: "Mật khẩu",
     titleSignUp: "Giới thiệu một số thông tin về bạn để tạo một tài khoản mới.",
     "Confirm Password": "Confirm password",
+    "Up next": "Tiếp theo",
+    "Mastery Points": "Điểm thành thạo",
+    points: "điểm",
   },
 };
 

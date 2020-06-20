@@ -6,7 +6,7 @@ import { Divider } from "react-native-paper";
 import { connect } from "react-redux";
 import { fetchCourses } from "../actions/courseActions";
 import { ActivityIndicator, Colors } from "react-native-paper";
-import Spinner from "react-native-loading-spinner-overlay";
+import CustomSpinner from "../components/CustomSpinner";
 
 class CourseListScreen extends React.Component {
   constructor(props) {
@@ -22,6 +22,7 @@ class CourseListScreen extends React.Component {
     const { error, loading, courses } = this.props;
     const { navigation, route } = this.props;
     const { topicName } = route.params;
+    const { topicIndex } = route.params;
 
     //Update header title
     navigation.setOptions({
@@ -30,34 +31,33 @@ class CourseListScreen extends React.Component {
 
     return (
       <View style={{ flex: 1, backgroundColor: "#fff" }}>
-        <Spinner
-          visible={loading}
-          customIndicator={
-            <ActivityIndicator
-              animating={true}
-              size="large"
-              color={Colors.blue500}
-            />
-          }
-        />
-        <FlatList
-          data={courses}
-          ItemSeparatorComponent={() => <Divider inset={true} />}
-          renderItem={(item) => (
-            <InfiniteListRow
-              data={item}
-              key={item.key}
-              inset={true}
-              icon={item.icon}
-              onPressItem={() => {
-                // go to recent lessons
-                // this.props.navigation.navigate("CourseList");
-                console.log("Hello");
-              }}
-            />
-          )}
-          keyExtractor={(item, index) => item.key}
-        />
+        {loading ? (
+          <CustomSpinner visible={loading} />
+        ) : (
+          <FlatList
+            data={courses}
+            ItemSeparatorComponent={() => <Divider inset={true} />}
+            renderItem={({ item, index }) => (
+              <InfiniteListRow
+                data={item}
+                key={item.key}
+                inset={true}
+                icon={item.icon}
+                onPressItem={() => {
+                  // go to detail of lesson
+                  this.props.navigation.navigate("CourseDetail", {
+                    courseName: item.name,
+                    courseIndex: index,
+                    topicName: topicName,
+                    topicIndex: topicIndex,
+                  });
+                  // console.log("Hello");
+                }}
+              />
+            )}
+            keyExtractor={(item, index) => item.key}
+          />
+        )}
       </View>
     );
   }
