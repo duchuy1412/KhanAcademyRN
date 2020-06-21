@@ -1,12 +1,13 @@
 import React from "react";
 import { View, ToastAndroid } from "react-native";
 import _l from "../lib/i18n";
-import { Divider, List, Colors } from "react-native-paper";
+import { Divider, List, Colors, ProgressBar } from "react-native-paper";
 import { connect } from "react-redux";
 import HeaderSection from "../components/Lesson/HeaderSection";
 import LessonLearnItem from "../components/Lesson/LessonLearnItem";
 import LessonPracticeItem from "../components/Lesson/LessonPracticeItem";
 import { MaterialIcons } from "@expo/vector-icons";
+import ProgressingRow from "../components/List/ProgressingRow";
 
 class LessonScreen extends React.Component {
   constructor(props) {
@@ -18,9 +19,7 @@ class LessonScreen extends React.Component {
   render() {
     // const { error, loading, lessons } = this.props;
     const { navigation, route } = this.props;
-    const { lessonName, units } = route.params;
-    // console.log("Topic Name: " + topicName);
-    // console.log("Course Name: " + courseName);
+    const { lessonName, lessonPoints, units } = route.params;
 
     //Update header title
     navigation.setOptions({
@@ -42,11 +41,13 @@ class LessonScreen extends React.Component {
 
     return (
       <View style={{ paddingBottom: 20 }}>
+        <ProgressingRow
+          currentPoints={0}
+          maxPoints={lessonPoints}
+          showProgressBar={true}
+        />
         {units
           ? units.map((unit) => {
-              {
-                /* console.log("learnning: " + unit["learn"]); */
-              }
               let learn = unit["learn"];
               let practice = unit["practice"];
 

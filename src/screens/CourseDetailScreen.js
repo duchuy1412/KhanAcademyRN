@@ -3,7 +3,7 @@ import { View, FlatList } from "react-native";
 import _l from "../lib/i18n";
 import LessonRow from "../components/List/LessonRow";
 import ProgressingRow from "../components/List/ProgressingRow";
-import { Divider, List } from "react-native-paper";
+import { Divider } from "react-native-paper";
 import { connect } from "react-redux";
 import { fetchLessons } from "../actions/lessonActions";
 import CustomSpinner from "../components/CustomSpinner";
@@ -61,11 +61,13 @@ class CourseDetailScreen extends React.Component {
                   title={item.name}
                   icon={item.icon}
                   upNext={false}
-                  points={100} // Pass current point of lesson here
+                  points={0} // Pass current point of lesson here
                   maxPoints={lessons[index].points}
+                  units={item.units}
                   onPressItem={() => {
                     navigation.push("Lesson", {
                       lessonName: item.name,
+                      lessonPoints: lessons[index].points,
                       units: item.units,
                     });
                   }}
