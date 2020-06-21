@@ -17,6 +17,7 @@ function Home() {
         name="CourseDetail"
         component={Screen.CourseDetailScreen}
       />
+      <HomeStack.Screen name="Lesson" component={Screen.LessonScreen} />
     </HomeStack.Navigator>
   );
 }

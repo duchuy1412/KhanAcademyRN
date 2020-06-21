@@ -50,6 +50,7 @@ class CourseListScreen extends React.Component {
                     courseIndex: index,
                     topicName: topicName,
                     topicIndex: topicIndex,
+                    lessons: item.lessons,
                   });
                   // console.log("Hello");
                 }}

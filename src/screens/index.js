@@ -7,6 +7,7 @@ import WelcomeScreen from "./WelcomeScreen";
 import SignInScreen from "./SignIn";
 import SignUpScreen from "./SignUpScreen";
 import CourseDetailScreen from "./CourseDetailScreen";
+import LessonScreen from "./LessonScreen";
 
 export {
   HomeScreen,
@@ -18,4 +19,5 @@ export {
   SignInScreen,
   SignUpScreen,
   CourseDetailScreen,
+  LessonScreen,
 };

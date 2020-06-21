@@ -1,12 +1,18 @@
 import * as React from "react";
 import { View, Text, Image } from "react-native";
-import { Divider, List, useTheme, Colors } from "react-native-paper";
+import {
+  Divider,
+  List,
+  useTheme,
+  Colors,
+  TouchableRipple,
+} from "react-native-paper";
 import { Feather } from "@expo/vector-icons";
 import _l from "../../lib/i18n";
 
 function LessonRow(props) {
   const { colors, fonts } = useTheme();
-  const { title, icon, upNext, points, maxPoints } = props;
+  const { title, icon, upNext, points, maxPoints, onPressItem, units } = props;
 
   return (
     <View style={{ backgroundColor: colors.background }}>
@@ -45,16 +51,27 @@ function LessonRow(props) {
             <Feather name="chevron-right" size={24} color={colors.disabled} />
           </View>
         )}
-        onPress={() => {
-          alert("ok");
-        }}
+        onPress={onPressItem}
       />
       <Divider />
-      <View style={{ padding: 15 }}>
-        <Text style={[fonts.regular, { fontSize: 16, color: Colors.grey600 }]}>
-          Counting
-        </Text>
-      </View>
+      <TouchableRipple onPress={onPressItem}>
+        <View style={{ padding: 15 }}>
+          {units
+            ? units.map((item) => {
+                return (
+                  <Text
+                    style={[
+                      fonts.regular,
+                      { fontSize: 16, color: Colors.grey600 },
+                    ]}
+                  >
+                    {item.name}
+                  </Text>
+                );
+              })
+            : null}
+        </View>
+      </TouchableRipple>
     </View>
   );
 }

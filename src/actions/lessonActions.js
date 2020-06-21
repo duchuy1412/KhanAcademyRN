@@ -17,23 +17,24 @@ export const fetchLessonsFailure = (error) => ({
 });
 
 // Get lessons of a course
-export function fetchLessons(topicIndex, courseIndex) {
+export function fetchLessons(lessons) {
   return (dispatch) => {
     dispatch(fetchLessonsBegin());
-    return fetch(
-      "https://khanacademyrn.firebaseio.com/topic/" +
-        topicIndex +
-        "/course/" +
-        courseIndex +
-        "/lessons.json"
-    )
-      .then(handleErrors)
-      .then((res) => res.json())
-      .then((json) => {
-        dispatch(fetchLessonsSuccess(json));
-        return json;
-      })
-      .catch((error) => dispatch(fetchLessonsFailure(error)));
+    // return fetch(
+    //   "https://khanacademyrn.firebaseio.com/topic/" +
+    //     topicIndex +
+    //     "/course/" +
+    //     courseIndex +
+    //     "/lessons.json"
+    // )
+    //   .then(handleErrors)
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     dispatch(fetchLessonsSuccess(json));
+    //     return json;
+    //   })
+    //   .catch((error) => dispatch(fetchLessonsFailure(error)));
+    dispatch(fetchLessonsSuccess(lessons));
   };
 }
 
