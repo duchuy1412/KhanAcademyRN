@@ -6,7 +6,7 @@ import _l from "../../lib/i18n";
 
 function LessonRow(props) {
   const { colors, fonts } = useTheme();
-  const { title, icon, upNext, points, maxPoints } = props;
+  const { title, icon, upNext, points, maxPoints, onPressItem } = props;
 
   return (
     <View style={{ backgroundColor: colors.background }}>
@@ -45,9 +45,7 @@ function LessonRow(props) {
             <Feather name="chevron-right" size={24} color={colors.disabled} />
           </View>
         )}
-        onPress={() => {
-          alert("ok");
-        }}
+        onPress={onPressItem}
       />
       <Divider />
       <View style={{ padding: 15 }}>

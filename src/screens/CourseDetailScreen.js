@@ -14,8 +14,8 @@ class CourseDetailScreen extends React.Component {
   }
 
   componentDidMount() {
-    const { topicIndex, courseIndex } = this.props.route.params;
-    this.props.dispatch(fetchLessons(topicIndex, courseIndex));
+    const { topicIndex, courseIndex, lessons } = this.props.route.params;
+    this.props.dispatch(fetchLessons(lessons));
   }
 
   getMaxMasteryPoints = (lessons) => {
@@ -63,6 +63,12 @@ class CourseDetailScreen extends React.Component {
                   upNext={false}
                   points={100} // Pass current point of lesson here
                   maxPoints={lessons[index].points}
+                  onPressItem={() => {
+                    navigation.push("Lesson", {
+                      lessonName: item.name,
+                      units: item.units,
+                    });
+                  }}
                 />
               </View>
             );

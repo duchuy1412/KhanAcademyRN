@@ -7,7 +7,7 @@ const InfiniteListRow = (props) => {
   const { data, onPressItem, icon } = props;
   const { colors } = useTheme();
 
-  console.log("Data", data);
+  // console.log("Data", data);
   return (
     <View>
       <TouchableOpacity onPress={onPressItem}>
