@@ -15,11 +15,15 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true
-    },
     "facebookScheme": "fb1186124071747489",
     "facebookAppId": "1186124071747489",
-    "facebookDisplayName": "Expo-firebase-auth"
+    "facebookDisplayName": "KhanAcademyRN",
+    "android": {
+      "package": "com.uet3120_4.devbacninh",
+      "googleServicesFile": "./google-services.json"
+    },
+    "ios": {
+      "supportsTablet": true
+    }
   }
 }

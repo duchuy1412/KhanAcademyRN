@@ -2,7 +2,14 @@ import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, Colors, Caption, TextInput } from "react-native-paper";
 import _l from "../lib/i18n";
+// const GLOBAL = require("../constants/index");
+import firebase from "../lib/firebase";
+// import { EMAIL_REGEX } from "../constants/index";
+const EMAIL_REGEX = /^[a-z][a-z0-9_.]{5,32}@[a-z0-9]{2,}(.[a-z0-9]{2,4}){1,2}$/gm;
 
+import * as Facebook from "expo-facebook";
+import * as GoogleSignIn from "expo-google-sign-in";
+// import { GoogleSignIn } from "expo-google-sign-in";
 export class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -16,15 +23,79 @@ export class SignIn extends Component {
     };
   }
 
-  handleSignInFacebook = () => {};
-  handleSignInGoogle = () => {};
-  handleOnPressSignIn = () => {};
-  _onChangeEmail = (e) => {
-    this.setState({ email: e.target.value });
+  handleSignInGoogle = async () => {
+    try {
+      await GoogleSignIn.askForPlayServicesAsync();
+
+      const { type, user } = await GoogleSignIn.signInAsync();
+      const data = await GoogleSignIn.GoogleAuthentication.prototype.toJSON();
+      if (type === "success") {
+        await firebase
+          .auth()
+          .setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+        const credential = firebase.auth.GoogleAuthProvider.credential(
+          data.idToken,
+          data,
+          accessToken
+        );
+        const googleProfileData = await firebase
+          .auth()
+          .signInWithCredential(credential);
+
+        alert("Success", googleProfileData);
+      }
+    } catch ({ message }) {
+      alert("login error:" + message);
+    }
   };
-  _onChangePassword = (e) => {
-    this.setState({ password: e.target.value });
+  handleSignInFacebook = async () => {
+    try {
+      // APP_ID
+      await Facebook.initializeAsync("1186124071747489");
+      const { type, token } = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ["public_profile"],
+      });
+      if (type === "success") {
+        await firebase
+          .auth()
+          .setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+        const credential = firebase.auth.FacebookAuthProvider.credential(token);
+        const facebookProfileData = await firebase
+          .auth()
+          .signInWithCredential(credential);
+        alert("Success FB", facebookProfileData);
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`);
+    }
   };
+
+  handleOnPressSignIn = () => {
+    const { email, password } = this.state;
+
+    try {
+      firebase.auth().createUserWithEmailAndPassword(email, password);
+    } catch ({ message }) {
+      alert("Error signin", message);
+    }
+  };
+  _onChangeEmail = (text) => {
+    this.setState({ email: text });
+  };
+  _onChangePassword = (text) => {
+    this.setState({ password: text });
+  };
+  validateInput = () => {
+    const { email, password } = this.state;
+    console.log("HUHUH", email, password);
+    console.log("Satete", this.state);
+    if (email && password && EMAIL_REGEX.test(email)) {
+      this.setState({ disableSignIn: false });
+    } else {
+      this.setState({ disableSignIn: true });
+    }
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -61,7 +132,7 @@ export class SignIn extends Component {
             placeholder={_l.t("Enter an email address")}
             error={this.state.errorEmail}
             value={this.state.email}
-            onChange={this._onChangeEmail}
+            onChangeText={this._onChangeEmail}
           ></TextInput>
           <TextInput
             label={_l.t("Password")}
@@ -72,7 +143,7 @@ export class SignIn extends Component {
             secureTextEntry={true}
             error={this.state.errorPassword}
             value={this.state.password}
-            onChange={this._onChangePassword}
+            onChangeText={this._onChangePassword}
           ></TextInput>
         </View>
 
