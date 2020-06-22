@@ -1,29 +1,69 @@
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ToastAndroid, Alert } from "react-native";
 import _l from "../lib/i18n";
 import { TextInput, Text, Button, Colors } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
-
+import firebase from "../lib/firebase";
 export class SignUpScreen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      errorFullname: false,
       errorEmail: false,
-      errorFirstName: false,
-      errorLastName: false,
       errorPassword: false,
       errorCfPassword: false,
       disableSignUp: true,
+
+      fullname: "",
+      email: "",
+      password: "",
+      cfPassword: "",
     };
   }
 
-  handlePressCreateAccount = () => {};
+  handlePressCreateAccount = () => {
+    const { fullname, email, password, cfPassword } = this.state;
+    if (this.validateInput()) {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          let currentUser = firebase.auth().currentUser;
+
+          if (currentUser.uid) {
+            this.props.dispatch(AuthActions.handleSignIn(currentUser));
+          }
+          ToastAndroid.show(
+            "Create new account successfully",
+            ToastAndroid.SHORT
+          );
+          this.props.navigation.navigate("Settings");
+        })
+        .catch((e) => {
+          Alert.alert("Error", e.message);
+        });
+    }
+  };
+
+  validateInput = () => {
+    const { fullname, email, password, cfPassword } = this.state;
+    if (
+      fullname &&
+      email &&
+      password &&
+      cfPassword &&
+      password === cfPassword
+    ) {
+      return true;
+    }
+    return false;
+  };
+  _onChangeFirst;
   render() {
     let {
       errorEmail,
-      errorFirstName,
-      errorLastName,
+      errorFullname,
       errorPassword,
       errorCfPassword,
     } = this.state;
@@ -34,25 +74,17 @@ export class SignUpScreen extends Component {
           <TextInput
             keyboardType="default"
             style={styles.textInput}
-            label={_l.t("First name")}
+            label={_l.t("Full name")}
             mode="outlined"
             textContentType="givenName"
-            placeholder={_l.t("First name")}
-            error={this.state.errorFirstName}
+            placeholder={_l.t("Full name")}
+            error={errorFullname}
+            onChangeText={(text) => {
+              this.setState({ fullname: text });
+            }}
+            value={this.state.fullname}
           ></TextInput>
-          {/* {errorEmail && (
-            <Text style={styles.errorLabel}>First name is required</Text>
-          )} */}
-          <TextInput
-            keyboardType="default"
-            style={styles.textInput}
-            label={_l.t("Last name")}
-            mode="outlined"
-            textContentType="familyName"
-            placeholder={_l.t("Last name")}
-            error={this.state.errorLastName}
-          ></TextInput>
-          {/* {errorLastName && <Text>Last name is required</Text>} */}
+          {errorFullname && <Text>Last name is required</Text>}
           <TextInput
             keyboardType="email-address"
             style={styles.textInput}
@@ -60,9 +92,13 @@ export class SignUpScreen extends Component {
             mode="outlined"
             textContentType="emailAddress"
             placeholder={_l.t("Enter an email address")}
-            error={this.state.errorEmail}
+            error={errorEmail}
+            value={this.state.email}
+            onChangeText={(text) => {
+              this.setState({ email: text });
+            }}
           ></TextInput>
-          {/* {errorEmail && <Text>Email is invalid</Text>} */}
+          {errorEmail && <Text>Email is invalid</Text>}
           <TextInput
             label={_l.t("Password")}
             style={styles.textInput}
@@ -70,9 +106,13 @@ export class SignUpScreen extends Component {
             textContentType="newPassword"
             placeholder={_l.t("Password")}
             secureTextEntry={true}
-            error={this.state.errorPassword}
+            error={errorPassword}
+            value={this.state.password}
+            onChangeText={(text) => {
+              this.setState({ password: text });
+            }}
           ></TextInput>
-          {/* {errorPassword && <Text>Password is invalid</Text>} */}
+          {errorPassword && <Text>Password is invalid</Text>}
           <TextInput
             label={_l.t("Confirm Password")}
             style={styles.textInput}
@@ -80,12 +120,15 @@ export class SignUpScreen extends Component {
             textContentType="password"
             placeholder={_l.t("Confirm Password")}
             secureTextEntry={true}
-            error={this.state.errorCfPassword}
+            error={errorCfPassword}
+            value={this.state.cfPassword}
+            onChangeText={(text) => {
+              this.setState({ cfPassword: text });
+            }}
           ></TextInput>
-          {/* {errorCfPassword && <Text>Confirm password is invalid</Text>} */}
+          {errorCfPassword && <Text>Confirm password is invalid</Text>}
           <Button
             mode="contained"
-            disabled={this.state.disableSignUp}
             uppercase={false}
             contentStyle={{ margin: 8 }}
             style={[styles.button, { marginTop: 14 }]}
@@ -99,7 +142,7 @@ export class SignUpScreen extends Component {
   }
 }
 
-export default SignUpScreen;
+export default connect()(SignUpScreen);
 
 const styles = StyleSheet.create({
   container: {

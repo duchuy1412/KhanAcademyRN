@@ -81,7 +81,7 @@ export class SignIn extends Component {
           if (currentUser.uid) {
             this.props.dispatch(AuthActions.handleSignIn(currentUser));
           }
-          ToastAndroid.show("Sign in success.", ToastAndroid.SHORT);
+          ToastAndroid.show("Sign in successfully", ToastAndroid.SHORT);
           this.props.navigation.navigate("Settings");
         })
         .catch((e) => {
