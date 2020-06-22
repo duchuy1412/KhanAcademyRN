@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { fetchCourses } from "../actions/courseActions";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import CustomSpinner from "../components/CustomSpinner";
-
 class CourseListScreen extends React.Component {
   constructor(props) {
     super(props);

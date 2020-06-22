@@ -4,6 +4,8 @@ import _l from "../lib/i18n";
 import { TextInput, Text, Button, Colors } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import firebase from "../lib/firebase";
+import { connect } from "react-redux";
+import * as AuthActions from "../actions/authActions";
 export class SignUpScreen extends Component {
   constructor(props) {
     super(props);
@@ -141,8 +143,9 @@ export class SignUpScreen extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ({});
 
-export default connect()(SignUpScreen);
+export default connect(mapStateToProps)(SignUpScreen);
 
 const styles = StyleSheet.create({
   container: {

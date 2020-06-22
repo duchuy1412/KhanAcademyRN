@@ -167,7 +167,8 @@ export class SignIn extends Component {
   }
 }
 
-export default connect()(SignIn);
+const mapStateToProps = (state) => ({});
+export default connect(mapStateToProps)(SignIn);
 
 const styles = StyleSheet.create({
   container: {
