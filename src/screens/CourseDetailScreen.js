@@ -3,7 +3,7 @@ import { View, FlatList } from "react-native";
 import _l from "../lib/i18n";
 import LessonRow from "../components/List/LessonRow";
 import ProgressingRow from "../components/List/ProgressingRow";
-import { Divider } from "react-native-paper";
+import { Divider, List } from "react-native-paper";
 import { connect } from "react-redux";
 import { fetchLessons } from "../actions/lessonActions";
 import CustomSpinner from "../components/CustomSpinner";
@@ -47,16 +47,16 @@ class CourseDetailScreen extends React.Component {
           showsVerticalScrollIndicator={false}
           data={lessons}
           ListHeaderComponent={() => (
-            <ProgressingRow
-              currentPoints={0} // Pass current point of course here
-              maxPoints={this.getMaxMasteryPoints(lessons)}
-            />
+            <List.Section>
+              <ProgressingRow
+                currentPoints={0} // Pass current point of course here
+                maxPoints={this.getMaxMasteryPoints(lessons)}
+              />
+            </List.Section>
           )}
-          ListHeaderComponentStyle={{ marginBottom: 20 }}
-          ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item, index }) => {
             return (
-              <View style={{ paddingBottom: 20 }}>
+              <List.Section>
                 <LessonRow
                   title={item.name}
                   icon={item.icon}
@@ -72,7 +72,7 @@ class CourseDetailScreen extends React.Component {
                     });
                   }}
                 />
-              </View>
+              </List.Section>
             );
           }}
           keyExtractor={(item, index) => item.key}

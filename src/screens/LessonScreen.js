@@ -40,19 +40,22 @@ class LessonScreen extends React.Component {
     });
 
     return (
-      <View style={{ paddingBottom: 20 }}>
-        <ProgressingRow
-          currentPoints={0}
-          maxPoints={lessonPoints}
-          showProgressBar={true}
-        />
+      <View>
+        <List.Section>
+          <ProgressingRow
+            currentPoints={0}
+            maxPoints={lessonPoints}
+            showProgressBar={true}
+          />
+        </List.Section>
+
         {units
-          ? units.map((unit) => {
+          ? units.map((unit, index) => {
               let learn = unit["learn"];
               let practice = unit["practice"];
 
               return (
-                <List.Section>
+                <List.Section key={index}>
                   <HeaderSection
                     title={unit.name}
                     onBookmark={() =>
@@ -67,6 +70,7 @@ class LessonScreen extends React.Component {
                     ? learn.map((item) => {
                         return (
                           <LessonLearnItem
+                            key={item.key}
                             item={item}
                             onPressItem={() => alert("Go to Video")}
                           />
@@ -77,6 +81,7 @@ class LessonScreen extends React.Component {
                     ? practice.map((item) => {
                         return (
                           <LessonPracticeItem
+                            key={item.key}
                             item={item}
                             onPressItem={() => alert("Go to Practice")}
                           />
