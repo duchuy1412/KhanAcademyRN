@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
-import { Button, Colors, Caption, TextInput } from "react-native-paper";
+import { View, StyleSheet, Alert, ToastAndroid } from "react-native";
+import { Button, Colors, Caption, TextInput, Text } from "react-native-paper";
 import _l from "../lib/i18n";
-// const GLOBAL = require("../constants/index");
 import firebase from "../lib/firebase";
-// import { EMAIL_REGEX } from "../constants/index";
-const EMAIL_REGEX = /^[a-z][a-z0-9_.]{5,32}@[a-z0-9]{2,}(.[a-z0-9]{2,4}){1,2}$/gm;
-
 import * as Facebook from "expo-facebook";
 import * as GoogleSignIn from "expo-google-sign-in";
+import { connect } from "react-redux";
+import * as AuthActions from "../actions/authActions";
+const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
 // import { GoogleSignIn } from "expo-google-sign-in";
 export class SignIn extends Component {
   constructor(props) {
@@ -16,8 +16,6 @@ export class SignIn extends Component {
 
     this.state = {
       disableSignIn: true,
-      errorEmail: false,
-      errorPassword: false,
       email: "",
       password: "",
     };
@@ -71,29 +69,39 @@ export class SignIn extends Component {
   };
 
   handleOnPressSignIn = () => {
-    const { email, password } = this.state;
+    console.log(this.state.email + " " + this.state.password);
+    if (this.validateInput()) {
+      const { email, password } = this.state;
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          let currentUser = firebase.auth().currentUser;
 
-    try {
-      firebase.auth().createUserWithEmailAndPassword(email, password);
-    } catch ({ message }) {
-      alert("Error signin", message);
+          if (currentUser.uid) {
+            this.props.dispatch(AuthActions.handleSignIn(currentUser));
+          }
+          ToastAndroid.show("Sign in success.", ToastAndroid.SHORT);
+          this.props.navigation.navigate("Settings");
+        })
+        .catch((e) => {
+          Alert.alert("Error", e.message);
+        });
     }
   };
   _onChangeEmail = (text) => {
-    this.setState({ email: text });
+    this.setState({ email: text, errorEmail: false });
   };
   _onChangePassword = (text) => {
-    this.setState({ password: text });
+    this.setState({ password: text, errorPassword: false });
   };
   validateInput = () => {
     const { email, password } = this.state;
-    console.log("HUHUH", email, password);
-    console.log("Satete", this.state);
     if (email && password && EMAIL_REGEX.test(email)) {
-      this.setState({ disableSignIn: false });
-    } else {
-      this.setState({ disableSignIn: true });
+      return true;
     }
+    Alert.alert("Error", _l.t("Email or password is incorrect"));
+    return false;
   };
 
   render() {
@@ -130,7 +138,6 @@ export class SignIn extends Component {
             mode="outlined"
             textContentType="emailAddress"
             placeholder={_l.t("Enter an email address")}
-            error={this.state.errorEmail}
             value={this.state.email}
             onChangeText={this._onChangeEmail}
           ></TextInput>
@@ -141,7 +148,6 @@ export class SignIn extends Component {
             textContentType="newPassword"
             placeholder={_l.t("Password")}
             secureTextEntry={true}
-            error={this.state.errorPassword}
             value={this.state.password}
             onChangeText={this._onChangePassword}
           ></TextInput>
@@ -149,7 +155,6 @@ export class SignIn extends Component {
 
         <Button
           mode="contained"
-          disabled={this.state.disableSignIn}
           uppercase={false}
           contentStyle={{ margin: 8 }}
           style={[styles.button, { marginTop: 14 }]}
@@ -162,7 +167,7 @@ export class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default connect()(SignIn);
 
 const styles = StyleSheet.create({
   container: {
