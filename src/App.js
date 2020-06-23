@@ -74,6 +74,8 @@ export default function App() {
       <Root.Navigator initialRouteName="TabNavigator">
         <Root.Screen name="Settings" component={Screen.SettingScreen} />
         <Root.Screen name="Welcome" component={Screen.WelcomeScreen} />
+        <Root.Screen name="Sign in" component={Screen.SignInScreen} />
+        <Root.Screen name="Sign up" component={Screen.SignUpScreen} />
         <Root.Screen
           options={{ headerShown: false }}
           name="TabNavigator"
