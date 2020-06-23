@@ -41,6 +41,7 @@ i18n.translations = {
     "Mastery Points": "Mastery Points",
     points: "points",
     "Email or password is incorrect": "Email or password is invalid format",
+    underConstruction: "Our application is under construction!",
   },
   vi: {
     Cancel: "Huỷ",
@@ -74,6 +75,7 @@ i18n.translations = {
     points: "điểm",
     "Email or password is incorrect":
       "Email hoặc mật khẩu không đúng định dạng",
+    underConstruction: "Chức năng đang được xây dựng!",
   },
 };
 

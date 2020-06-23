@@ -8,6 +8,7 @@ import LessonLearnItem from "../components/Lesson/LessonLearnItem";
 import LessonPracticeItem from "../components/Lesson/LessonPracticeItem";
 import { MaterialIcons } from "@expo/vector-icons";
 import ProgressingRow from "../components/List/ProgressingRow";
+import UnderContruction from "../components/UnderContruction";
 
 class LessonScreen extends React.Component {
   constructor(props) {
@@ -40,14 +41,18 @@ class LessonScreen extends React.Component {
     });
 
     return (
-      <View>
-        <List.Section>
-          <ProgressingRow
-            currentPoints={0}
-            maxPoints={lessonPoints}
-            showProgressBar={true}
-          />
-        </List.Section>
+      <View style={{ flex: 1 }}>
+        {units ? (
+          <List.Section>
+            <ProgressingRow
+              currentPoints={0}
+              maxPoints={lessonPoints}
+              showProgressBar={true}
+            />
+          </List.Section>
+        ) : (
+          <UnderContruction />
+        )}
 
         {units
           ? units.map((unit, index) => {

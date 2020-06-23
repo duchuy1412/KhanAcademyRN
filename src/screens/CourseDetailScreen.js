@@ -7,6 +7,7 @@ import { Divider, List } from "react-native-paper";
 import { connect } from "react-redux";
 import { fetchLessons } from "../actions/lessonActions";
 import CustomSpinner from "../components/CustomSpinner";
+import UnderContruction from "../components/UnderContruction";
 
 class CourseDetailScreen extends React.Component {
   constructor(props) {
@@ -42,41 +43,44 @@ class CourseDetailScreen extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <CustomSpinner visible={loading} />
-
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={lessons}
-          ListHeaderComponent={() => (
-            <List.Section>
-              <ProgressingRow
-                currentPoints={0} // Pass current point of course here
-                maxPoints={this.getMaxMasteryPoints(lessons)}
-              />
-            </List.Section>
-          )}
-          renderItem={({ item, index }) => {
-            return (
+        {lessons ? (
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={lessons}
+            ListHeaderComponent={() => (
               <List.Section>
-                <LessonRow
-                  title={item.name}
-                  icon={item.icon}
-                  upNext={false}
-                  points={0} // Pass current point of lesson here
-                  maxPoints={lessons[index].points}
-                  units={item.units}
-                  onPressItem={() => {
-                    navigation.push("Lesson", {
-                      lessonName: item.name,
-                      lessonPoints: lessons[index].points,
-                      units: item.units,
-                    });
-                  }}
+                <ProgressingRow
+                  currentPoints={0} // Pass current point of course here
+                  maxPoints={this.getMaxMasteryPoints(lessons)}
                 />
               </List.Section>
-            );
-          }}
-          keyExtractor={(item, index) => item.key}
-        />
+            )}
+            renderItem={({ item, index }) => {
+              return (
+                <List.Section>
+                  <LessonRow
+                    title={item.name}
+                    icon={item.icon}
+                    upNext={false}
+                    points={0} // Pass current point of lesson here
+                    maxPoints={lessons[index].points}
+                    units={item.units}
+                    onPressItem={() => {
+                      navigation.push("Lesson", {
+                        lessonName: item.name,
+                        lessonPoints: lessons[index].points,
+                        units: item.units,
+                      });
+                    }}
+                  />
+                </List.Section>
+              );
+            }}
+            keyExtractor={(item, index) => item.key}
+          />
+        ) : (
+          <UnderContruction />
+        )}
       </View>
     );
   }
