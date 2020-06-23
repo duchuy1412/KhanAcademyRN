@@ -5,7 +5,6 @@ import _l from "../lib/i18n";
 import { connect } from "react-redux";
 import firebase from "../lib/firebase";
 import * as AuthActions from "../actions/authActions";
-import cx from "react-native-classnames";
 export class SettingScreen extends React.Component {
   // componentDidMount() {
   //   let currentUser = firebase.auth().currentUser;
