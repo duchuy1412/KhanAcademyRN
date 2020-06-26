@@ -72,6 +72,7 @@ class LessonScreen extends React.Component {
                             onPressItem={() => {
                               this.props.navigation.navigate("LearningScreen", {
                                 learningItem: item,
+                                unit: unit,
                               });
                             }}
                           />
