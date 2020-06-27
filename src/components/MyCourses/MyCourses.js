@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
-import { List, Divider, Button } from "react-native-paper";
+import { List, Divider, Button, Colors } from "react-native-paper";
 import _l from "../../lib/i18n";
 import InfiniteListRow from "../List/InfiniteListRow";
 

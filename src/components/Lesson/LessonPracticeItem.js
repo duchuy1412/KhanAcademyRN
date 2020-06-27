@@ -13,7 +13,14 @@ function LessonPracticeItem(props) {
         title={item.name}
         titleStyle={{ fontWeight: "bold" }}
         description={"0/100 points"}
-        left={() => <Feather name="box" size={30} color={Colors.blue500} />}
+        left={() => (
+          <Feather
+            name="box"
+            size={30}
+            color={Colors.blue500}
+            style={{ marginTop: 5 }}
+          />
+        )}
         onPress={onPressItem}
       />
     </View>

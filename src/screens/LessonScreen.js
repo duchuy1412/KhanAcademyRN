@@ -64,20 +64,27 @@ class LessonScreen extends React.Component {
                   />
                   <Divider />
                   {learn
-                    ? learn.map((item) => {
+                    ? learn.map((item, index) => {
                         return (
                           <LessonLearnItem
                             item={item}
-                            onPressItem={() => alert("Go to Video")}
+                            key={index}
+                            onPressItem={() => {
+                              this.props.navigation.navigate("LearningScreen", {
+                                learningItem: item,
+                                unit: unit,
+                              });
+                            }}
                           />
                         );
                       })
                     : null}
                   {practice
-                    ? practice.map((item) => {
+                    ? practice.map((item, index) => {
                         return (
                           <LessonPracticeItem
                             item={item}
+                            key={index}
                             onPressItem={() => alert("Go to Practice")}
                           />
                         );
