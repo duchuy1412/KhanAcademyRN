@@ -8,14 +8,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { Video } from "expo-av";
-import {
-  Colors,
-  Text,
-  Title,
-  Caption,
-  Divider,
-  List,
-} from "react-native-paper";
+import { Colors, Text, Title, Divider, List } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ScrollView, FlatList } from "react-native-gesture-handler";
 import _l from "../lib/i18n";
@@ -30,6 +23,7 @@ export class LearningScreen extends Component {
       bookmarked: false,
       learn: [],
       practice: [],
+      currentUnit: {},
     };
   }
 
@@ -40,13 +34,25 @@ export class LearningScreen extends Component {
     this.setState({
       learn: unit["learn"],
       practice: unit["practice"],
+      currentUnit: learningItem,
+      unit: unit,
     });
+  }
+  handlePressUnitItem(item) {
+    return () => {
+      this.setState({ currentUnit: item });
+    };
+  }
+  gotoPractice(item) {
+    return () => alert("Practice");
   }
   render() {
     const { navigation, route } = this.props;
     const { learningItem, unit } = route.params;
+    let { currentUnit } = this.state;
+
     navigation.setOptions({
-      title: learningItem.name,
+      title: currentUnit.name,
       headerRight: () => (
         <MaterialIcons
           name="bookmark-border"
@@ -65,25 +71,22 @@ export class LearningScreen extends Component {
       <View>
         <Video
           source={{
-            uri:
-              "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+            uri: currentUnit.video,
           }}
           rate={1.0}
           volume={1.0}
           isMuted={false}
-          resizeMode="cover"
+          resizeMode="contain"
           shouldPlay={false}
           isLooping
           useNativeControls={true}
-          style={{ width: "100%", height: "40%" }}
+          style={{ width: "100%", height: "35%" }}
         />
-        <SafeAreaView style={{ height: "59%" }}>
+        <SafeAreaView style={{ height: "64%" }}>
           <ScrollView>
             <View style={[styles.title]}>
-              <Title style={{ marginTop: 0 }}>{learningItem.name}</Title>
-              <Text style={{ marginLeft: 2 }}>
-                Learning counting with small numbers
-              </Text>
+              <Title style={{ marginTop: 0 }}>{currentUnit.name}</Title>
+              <Text style={{ marginLeft: 2 }}>{currentUnit.description}</Text>
             </View>
             <View style={styles.iconRow}>
               <View style={styles.icon}>
@@ -118,7 +121,13 @@ export class LearningScreen extends Component {
             <List.Item
               style={styles.partOfLesson}
               title={_l.t("Part of lesson")}
+              titleStyle={{ fontSize: 14 }}
               description={unit.name}
+              descriptionStyle={{
+                fontSize: 18,
+                fontWeight: "bold",
+                color: "black",
+              }}
               left={() => (
                 <Image
                   style={{
@@ -162,9 +171,9 @@ export class LearningScreen extends Component {
                   <LessonUnitRow
                     data={item}
                     type="learn"
-                    active={item.key === learningItem.key}
+                    active={item.key === currentUnit.key}
+                    onPressItem={this.handlePressUnitItem(item)}
                   ></LessonUnitRow>
-                  // <Text>{item.name}</Text>
                 )}
                 ItemSeparatorComponent={() => <Divider inset={false} />}
               ></FlatList>
@@ -172,8 +181,11 @@ export class LearningScreen extends Component {
               <FlatList
                 data={this.state.practice}
                 renderItem={({ item }) => (
-                  <LessonUnitRow data={item} type="practice"></LessonUnitRow>
-                  // <Text>{item.name}</Text>
+                  <LessonUnitRow
+                    data={item}
+                    type="practice"
+                    onPressItem={this.gotoPractice(item)}
+                  ></LessonUnitRow>
                 )}
                 ItemSeparatorComponent={() => <Divider inset={false} />}
               ></FlatList>

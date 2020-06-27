@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { List } from "react-native-paper";
 import { Feather } from "@expo/vector-icons";
 import { Colors } from "react-native-paper";
+import { color } from "react-native-reanimated";
 
 export class LessonUnitRow extends Component {
   constructor(props) {
@@ -12,14 +13,20 @@ export class LessonUnitRow extends Component {
   }
 
   render() {
-    const { active = false, data, type } = this.props;
+    const { active = false, data, type, onPressItem } = this.props;
     if (type === "learn") {
       return (
-        <View style={styles.title}>
+        <View style={[styles.title, active && { paddingLeft: 2 }]}>
           <List.Item
-            style={styles.partOfLesson}
+            onPress={onPressItem}
+            style={[
+              styles.partOfLesson,
+              active && { borderLeftWidth: 4, borderLeftColor: Colors.blue500 },
+            ]}
             title={data.name}
-            titleStyle={active ? { color: Colors.blue500 } : {}}
+            titleStyle={
+              active ? { color: Colors.blue500, fontWeight: "bold" } : {}
+            }
             left={() => (
               <Feather
                 name="play-circle"
@@ -34,7 +41,15 @@ export class LessonUnitRow extends Component {
                   flexDirection: "row",
                 }}
               >
-                <Text>0:56</Text>
+                <Text
+                  style={
+                    active
+                      ? { color: Colors.blue500, fontWeight: "bold" }
+                      : { color: Colors.grey400, fontWeight: "bold" }
+                  }
+                >
+                  {data.videoDuration}
+                </Text>
               </View>
             )}
           />
@@ -44,9 +59,10 @@ export class LessonUnitRow extends Component {
     return (
       <View style={styles.title}>
         <List.Item
+          onPress={onPressItem}
           style={styles.partOfLesson}
           title={data.name}
-          titleStyle={active ? {} : {}}
+          titleStyle={{}}
           left={() => <Feather name="edit" size={30} color={Colors.grey400} />}
         />
       </View>
