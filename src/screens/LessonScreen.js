@@ -88,7 +88,7 @@ class LessonScreen extends React.Component {
                           <LessonPracticeItem
                             key={item.key}
                             item={item}
-                            onPressItem={() => alert("Go to Practice")}
+                            onPressItem={() => navigation.push("Practice")}
                           />
                         );
                       })

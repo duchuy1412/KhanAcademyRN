@@ -8,6 +8,7 @@ import SignInScreen from "./SignIn";
 import SignUpScreen from "./SignUpScreen";
 import CourseDetailScreen from "./CourseDetailScreen";
 import LessonScreen from "./LessonScreen";
+import PracticeScreen from "./PracticeScreen";
 
 export {
   HomeScreen,
@@ -20,4 +21,5 @@ export {
   SignUpScreen,
   CourseDetailScreen,
   LessonScreen,
+  PracticeScreen,
 };
