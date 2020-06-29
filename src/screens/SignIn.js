@@ -51,7 +51,7 @@ export class SignIn extends Component {
       // APP_ID
       await Facebook.initializeAsync("1186124071747489");
       const { type, token } = await Facebook.logInWithReadPermissionsAsync({
-        permissions: ["public_profile"],
+        permissions: ["public_profile", "email"],
       });
       if (type === "success") {
         await firebase
