@@ -16,6 +16,7 @@ function LessonRow(props) {
 
   return (
     <View style={{ backgroundColor: colors.background }}>
+      <Divider />
       {upNext ? (
         <View style={{ backgroundColor: colors.primary, padding: 5 }}>
           <Text style={[fonts.medium, { color: "#fff" }]}>
@@ -60,6 +61,7 @@ function LessonRow(props) {
             ? units.map((item) => {
                 return (
                   <Text
+                    key={item.key}
                     style={[
                       fonts.regular,
                       { fontSize: 16, color: Colors.grey600 },

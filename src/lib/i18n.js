@@ -44,6 +44,13 @@ i18n.translations = {
     Share: "Share",
     Transcript: "Transcript",
     "Part of lesson": "Part of lesson",
+    underConstruction: "Our application is under construction!",
+    "Type a number in the box": "Type a number in the box",
+    Check: "Check",
+    Next: "Next",
+    Finish: "Finish",
+    "Great work!": "Great work!",
+    "Try again!": "Try again!",
   },
   vi: {
     Cancel: "Huỷ",
@@ -80,6 +87,13 @@ i18n.translations = {
     Share: "Chia sẻ",
     Transcript: "Lời thoại",
     "Part of lesson": "Part of lesson",
+    underConstruction: "Chức năng đang được xây dựng!",
+    "Type a number in the box": "Điền đáp số vào ô dưới:",
+    Check: "Kiểm tra",
+    Next: "Tiếp tục",
+    Finish: "Kết thúc",
+    "Great work!": "Chính xác!",
+    "Try again!": "Thử lại!",
   },
 };
 

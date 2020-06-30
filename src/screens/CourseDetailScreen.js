@@ -3,10 +3,11 @@ import { View, FlatList } from "react-native";
 import _l from "../lib/i18n";
 import LessonRow from "../components/List/LessonRow";
 import ProgressingRow from "../components/List/ProgressingRow";
-import { Divider } from "react-native-paper";
+import { Divider, List } from "react-native-paper";
 import { connect } from "react-redux";
 import { fetchLessons } from "../actions/lessonActions";
 import CustomSpinner from "../components/CustomSpinner";
+import UnderContruction from "../components/UnderContruction";
 
 class CourseDetailScreen extends React.Component {
   constructor(props) {
@@ -42,41 +43,44 @@ class CourseDetailScreen extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <CustomSpinner visible={loading} />
-
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={lessons}
-          ListHeaderComponent={() => (
-            <ProgressingRow
-              currentPoints={0} // Pass current point of course here
-              maxPoints={this.getMaxMasteryPoints(lessons)}
-            />
-          )}
-          ListHeaderComponentStyle={{ marginBottom: 20 }}
-          ItemSeparatorComponent={() => <Divider />}
-          renderItem={({ item, index }) => {
-            return (
-              <View style={{ paddingBottom: 20 }}>
-                <LessonRow
-                  title={item.name}
-                  icon={item.icon}
-                  upNext={false}
-                  points={0} // Pass current point of lesson here
-                  maxPoints={lessons[index].points}
-                  units={item.units}
-                  onPressItem={() => {
-                    navigation.push("Lesson", {
-                      lessonName: item.name,
-                      lessonPoints: lessons[index].points,
-                      units: item.units,
-                    });
-                  }}
+        {lessons ? (
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={lessons}
+            ListHeaderComponent={() => (
+              <List.Section>
+                <ProgressingRow
+                  currentPoints={0} // Pass current point of course here
+                  maxPoints={this.getMaxMasteryPoints(lessons)}
                 />
-              </View>
-            );
-          }}
-          keyExtractor={(item, index) => item.key}
-        />
+              </List.Section>
+            )}
+            renderItem={({ item, index }) => {
+              return (
+                <List.Section>
+                  <LessonRow
+                    title={item.name}
+                    icon={item.icon}
+                    upNext={false}
+                    points={0} // Pass current point of lesson here
+                    maxPoints={lessons[index].points}
+                    units={item.units}
+                    onPressItem={() => {
+                      navigation.push("Lesson", {
+                        lessonName: item.name,
+                        lessonPoints: lessons[index].points,
+                        units: item.units,
+                      });
+                    }}
+                  />
+                </List.Section>
+              );
+            }}
+            keyExtractor={(item, index) => item.key}
+          />
+        ) : (
+          <UnderContruction />
+        )}
       </View>
     );
   }

@@ -18,6 +18,7 @@ function Home() {
         component={Screen.CourseDetailScreen}
       />
       <HomeStack.Screen name="Lesson" component={Screen.LessonScreen} />
+      {/* <HomeStack.Screen name="Practice" component={Screen.PracticeScreen} /> */}
     </HomeStack.Navigator>
   );
 }
@@ -77,6 +78,7 @@ export default function App() {
         <Root.Screen name="Sign in" component={Screen.SignInScreen} />
         <Root.Screen name="Sign up" component={Screen.SignUpScreen} />
         <Root.Screen name="LearningScreen" component={Screen.LearningScreen} />
+        <Root.Screen name="Practice" component={Screen.PracticeScreen} />
         <Root.Screen
           options={{ headerShown: false }}
           name="TabNavigator"

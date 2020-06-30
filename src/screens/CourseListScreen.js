@@ -5,8 +5,8 @@ import InfiniteListRow from "../components/List/InfiniteListRow";
 import { Divider } from "react-native-paper";
 import { connect } from "react-redux";
 import { fetchCourses } from "../actions/courseActions";
-import { ActivityIndicator, Colors } from "react-native-paper";
 import CustomSpinner from "../components/CustomSpinner";
+import UnderContruction from "../components/UnderContruction";
 class CourseListScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +32,7 @@ class CourseListScreen extends React.Component {
       <View style={{ flex: 1, backgroundColor: "#fff" }}>
         {loading ? (
           <CustomSpinner visible={loading} />
-        ) : (
+        ) : courses ? (
           <FlatList
             data={courses}
             ItemSeparatorComponent={() => <Divider inset={true} />}
@@ -57,6 +57,8 @@ class CourseListScreen extends React.Component {
             )}
             keyExtractor={(item, index) => item.key}
           />
+        ) : (
+          <UnderContruction />
         )}
       </View>
     );
