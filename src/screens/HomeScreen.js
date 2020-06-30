@@ -76,8 +76,11 @@ export class HomeScreen extends React.Component {
             />
           }
         >
-          <WelcomeHomeScreen navigation={navigation} />
-          <RecentLessons navigation={navigation} />
+          {!this.props.signedIn && (
+            <WelcomeHomeScreen navigation={navigation} />
+          )}
+
+          {this.props.signedIn && <RecentLessons navigation={navigation} />}
           {this.props.signedIn && <MyCourses />}
 
           <BrowseTopic navigation={navigation} />

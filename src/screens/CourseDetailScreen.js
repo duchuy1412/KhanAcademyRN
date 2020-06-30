@@ -50,13 +50,17 @@ class CourseDetailScreen extends React.Component {
             <ProgressingRow
               currentPoints={0} // Pass current point of course here
               maxPoints={this.getMaxMasteryPoints(lessons)}
+              style={{ marginBottom: 0 }}
             />
           )}
-          ListHeaderComponentStyle={{ marginBottom: 20 }}
-          ItemSeparatorComponent={() => <Divider />}
+          ListHeaderComponentStyle={{ marginBottom: 16 }}
           renderItem={({ item, index }) => {
             return (
-              <View style={{ paddingBottom: 20 }}>
+              <View
+                style={{
+                  paddingBottom: 16,
+                }}
+              >
                 <LessonRow
                   title={item.name}
                   icon={item.icon}

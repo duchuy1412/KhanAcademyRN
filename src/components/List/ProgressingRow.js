@@ -16,7 +16,7 @@ function ProgressingRow(props) {
   const percentAround = Math.round((currentPoints / maxPoints) * 100);
 
   return (
-    <View style={{ backgroundColor: colors.background }}>
+    <View style={[{ backgroundColor: colors.background },props.style]}>
       <List.Item
         title={currentPoints + "/" + maxPoints + " (" + percentAround + "%)"}
         titleNumberOfLines={2}

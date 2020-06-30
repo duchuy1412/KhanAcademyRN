@@ -53,19 +53,6 @@ export class LearningScreen extends Component {
 
     navigation.setOptions({
       title: currentUnit.name,
-      headerRight: () => (
-        <MaterialIcons
-          name="bookmark-border"
-          size={30}
-          color={Colors.grey400}
-          onPress={() => {
-            ToastAndroid.show("Saved into Bookmarks!", ToastAndroid.SHORT);
-          }}
-        />
-      ),
-      headerRightContainerStyle: {
-        padding: 10,
-      },
     });
     return (
       <View>

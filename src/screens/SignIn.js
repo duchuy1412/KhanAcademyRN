@@ -82,7 +82,7 @@ export class SignIn extends Component {
             this.props.dispatch(AuthActions.handleSignIn(currentUser));
           }
           ToastAndroid.show("Sign in successfully", ToastAndroid.SHORT);
-          this.props.navigation.navigate("Settings");
+          this.props.navigation.navigate("TabNavigator");
         })
         .catch((e) => {
           Alert.alert("Error", e.message);

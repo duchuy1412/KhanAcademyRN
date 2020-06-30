@@ -12,10 +12,35 @@ import ProgressingRow from "../components/List/ProgressingRow";
 class LessonScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      bookmarkedLesson: true,
+    };
   }
 
   componentDidMount() {}
 
+  handlePressBookmarkLesson = () => {
+    const { navigation, route } = this.props;
+    const { lessonName, lessonPoints, units } = route.params;
+
+    this.setState({ bookmarkedLesson: !this.state.bookmarkedLesson }, () => {
+      if (this.state.bookmarkedLesson) {
+        ToastAndroid.show(
+          `Saved "${lessonName}" to Bookmarks!`,
+          ToastAndroid.SHORT
+        );
+      } else {
+        ToastAndroid.show(
+          `Deleted "${lessonName}" to Bookmarks!`,
+          ToastAndroid.SHORT
+        );
+      }
+    });
+  };
+
+  hanldeBookmarkUnit = () => {
+    ToastAndroid.show("Saved to Bookmarks!", ToastAndroid.SHORT);
+  };
   render() {
     // const { error, loading, lessons } = this.props;
     const { navigation, route } = this.props;
@@ -24,16 +49,22 @@ class LessonScreen extends React.Component {
     //Update header title
     navigation.setOptions({
       title: lessonName,
-      headerRight: () => (
-        <MaterialIcons
-          name="bookmark-border"
-          size={30}
-          color={Colors.blue500}
-          onPress={() => {
-            ToastAndroid.show("Saved into Bookmarks!", ToastAndroid.SHORT);
-          }}
-        />
-      ),
+      headerRight: () =>
+        this.state.bookmarkedLesson ? (
+          <MaterialIcons
+            name="bookmark"
+            size={30}
+            color={Colors.blue500}
+            onPress={this.handlePressBookmarkLesson}
+          />
+        ) : (
+          <MaterialIcons
+            name="bookmark-border"
+            size={30}
+            color={Colors.blue500}
+            onPress={this.handlePressBookmarkLesson}
+          />
+        ),
       headerRightContainerStyle: {
         padding: 10,
       },
@@ -45,6 +76,7 @@ class LessonScreen extends React.Component {
           currentPoints={0}
           maxPoints={lessonPoints}
           showProgressBar={true}
+          style={{ marginBottom: 8 }}
         />
         {units
           ? units.map((unit) => {
@@ -53,14 +85,10 @@ class LessonScreen extends React.Component {
 
               return (
                 <List.Section>
+                  <Divider />
                   <HeaderSection
                     title={unit.name}
-                    onBookmark={() =>
-                      ToastAndroid.show(
-                        "Saved into Bookmarks!",
-                        ToastAndroid.SHORT
-                      )
-                    }
+                    onBookmark={this.hanldeBookmarkUnit}
                   />
                   <Divider />
                   {learn
@@ -90,6 +118,7 @@ class LessonScreen extends React.Component {
                         );
                       })
                     : null}
+                  <Divider />
                 </List.Section>
               );
             })

@@ -23,6 +23,7 @@ function LessonRow(props) {
           </Text>
         </View>
       ) : null}
+      <Divider />
       <List.Item
         title={title}
         titleStyle={[
