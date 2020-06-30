@@ -29,7 +29,7 @@ function ProgressingRow(props) {
           color={colors.primary}
           style={{
             height: 15,
-            marginHorizontal: 10,
+            marginHorizontal: 15,
             marginBottom: 15,
             borderRadius: 45,
           }}

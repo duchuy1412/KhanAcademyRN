@@ -8,6 +8,7 @@ import LessonLearnItem from "../components/Lesson/LessonLearnItem";
 import LessonPracticeItem from "../components/Lesson/LessonPracticeItem";
 import { MaterialIcons } from "@expo/vector-icons";
 import ProgressingRow from "../components/List/ProgressingRow";
+import UnderContruction from "../components/UnderContruction";
 
 class LessonScreen extends React.Component {
   constructor(props) {
@@ -71,21 +72,26 @@ class LessonScreen extends React.Component {
     });
 
     return (
-      <View style={{ paddingBottom: 20 }}>
-        <ProgressingRow
-          currentPoints={0}
-          maxPoints={lessonPoints}
-          showProgressBar={true}
-          style={{ marginBottom: 8 }}
-        />
+      <View style={{ flex: 1 }}>
+        {units ? (
+          <List.Section>
+            <ProgressingRow
+              currentPoints={0}
+              maxPoints={lessonPoints}
+              showProgressBar={true}
+            />
+          </List.Section>
+        ) : (
+          <UnderContruction />
+        )}
+
         {units
-          ? units.map((unit) => {
+          ? units.map((unit, index) => {
               let learn = unit["learn"];
               let practice = unit["practice"];
 
               return (
-                <List.Section>
-                  <Divider />
+                <List.Section key={index}>
                   <HeaderSection
                     title={unit.name}
                     onBookmark={this.hanldeBookmarkUnit}
@@ -95,6 +101,7 @@ class LessonScreen extends React.Component {
                     ? learn.map((item, index) => {
                         return (
                           <LessonLearnItem
+                            key={item.key}
                             item={item}
                             key={index}
                             onPressItem={() => {
@@ -111,9 +118,14 @@ class LessonScreen extends React.Component {
                     ? practice.map((item, index) => {
                         return (
                           <LessonPracticeItem
+                            key={item.key}
                             item={item}
                             key={index}
-                            onPressItem={() => alert("Go to Practice")}
+                            onPressItem={() =>
+                              navigation.push("Practice", {
+                                practiceItem: item,
+                              })
+                            }
                           />
                         );
                       })
