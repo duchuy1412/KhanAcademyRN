@@ -15,6 +15,13 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
+    "facebookScheme": "fb1186124071747489",
+    "facebookAppId": "1186124071747489",
+    "facebookDisplayName": "KhanAcademyRN",
+    "android": {
+      "package": "com.uet3120_4.devbacninh",
+      "googleServicesFile": "./google-services.json"
+    },
     "ios": {
       "supportsTablet": true
     }

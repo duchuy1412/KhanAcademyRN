@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "752318000760",
+    "firebase_url": "https://khanacademyrn.firebaseio.com",
+    "project_id": "khanacademyrn",
+    "storage_bucket": "khanacademyrn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752318000760:android:74758824fe7554538d078d",
+        "android_client_info": {
+          "package_name": "com.uet3120_4.devbacninh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752318000760-40kvj1f694c34cvbt81vqnfbn4t1r1oq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbQMkd67kmY0-GxV5g4OSh5XtusQOW25A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752318000760-40kvj1f694c34cvbt81vqnfbn4t1r1oq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "752318000760-72rjhn59d3loamno94j9on49q6gc5br7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.uet.int3120.devbacninh"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
