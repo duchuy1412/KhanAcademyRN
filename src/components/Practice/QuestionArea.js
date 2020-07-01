@@ -13,7 +13,7 @@ const QuestionArea = (props) => {
         backgroundColor: colors.background,
         flex: 1,
         alignSelf: "stretch",
-        padding: 30,
+        padding: 18,
       }}
     >
       <ScrollView style={styles.question}>

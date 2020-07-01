@@ -23,6 +23,7 @@ const BottomBar = (props) => {
       <Divider />
       <View
         style={{
+          paddingHorizontal: 10,
           justifyContent: "center",
           backgroundColor: "#fff",
         }}
