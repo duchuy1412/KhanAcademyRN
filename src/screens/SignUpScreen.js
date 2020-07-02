@@ -6,6 +6,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import firebase from "../lib/firebase";
 import { connect } from "react-redux";
 import * as AuthActions from "../actions/authActions";
+import * as UserActions from "../actions/userActions";
 export class SignUpScreen extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +36,9 @@ export class SignUpScreen extends Component {
 
           if (currentUser.uid) {
             this.props.dispatch(AuthActions.handleSignIn(currentUser));
+            this.props.dispatch(
+              UserActions.storeDataToDB(currentUser.uid, { fullname: fullname })
+            );
           }
           ToastAndroid.show(
             "Create new account successfully",

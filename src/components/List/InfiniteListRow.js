@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, View, TouchableOpacity } from "react-native";
-import { List, Divider, useTheme } from "react-native-paper";
+import { List, Divider, useTheme, Colors } from "react-native-paper";
 import { TouchableNativeFeedback } from "react-native-gesture-handler";
 
 const InfiniteListRow = (props) => {
@@ -23,6 +23,7 @@ const InfiniteListRow = (props) => {
                 height: 50,
                 width: 50,
               }}
+              resizeMode="contain"
               source={
                 icon ? { uri: icon } : require("../../assets/1stgrade.png")
               }
