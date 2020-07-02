@@ -12,7 +12,16 @@ import _l from "../../lib/i18n";
 
 function LessonRow(props) {
   const { colors, fonts } = useTheme();
-  const { title, icon, upNext, points, maxPoints, onPressItem, units } = props;
+  const {
+    title,
+    icon,
+    upNext,
+    points,
+    maxPoints,
+    onPressItem,
+    units,
+    showListUnit = true,
+  } = props;
 
   return (
     <View style={{ backgroundColor: colors.background }}>
@@ -56,25 +65,27 @@ function LessonRow(props) {
         onPress={onPressItem}
       />
       <Divider />
-      <TouchableRipple onPress={onPressItem}>
-        <View style={{ padding: 15 }}>
-          {units
-            ? units.map((item) => {
-                return (
-                  <Text
-                    key={item.key}
-                    style={[
-                      fonts.regular,
-                      { fontSize: 16, color: Colors.grey600 },
-                    ]}
-                  >
-                    {item.name}
-                  </Text>
-                );
-              })
-            : null}
-        </View>
-      </TouchableRipple>
+      {showListUnit && (
+        <TouchableRipple onPress={onPressItem}>
+          <View style={{ padding: 15 }}>
+            {units
+              ? units.map((item) => {
+                  return (
+                    <Text
+                      key={item.key}
+                      style={[
+                        fonts.regular,
+                        { fontSize: 16, color: Colors.grey600 },
+                      ]}
+                    >
+                      {item.name}
+                    </Text>
+                  );
+                })
+              : null}
+          </View>
+        </TouchableRipple>
+      )}
     </View>
   );
 }

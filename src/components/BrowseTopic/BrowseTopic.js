@@ -24,7 +24,6 @@ class BrowseTopic extends React.Component {
       });
   }
   render() {
-    console.log("dataaaaa", this.state.data);
     const { navigation } = this.props;
     let { data } = this.state;
     return (

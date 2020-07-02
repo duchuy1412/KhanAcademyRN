@@ -3,7 +3,6 @@ import { View, Text, Image } from "react-native";
 import { List } from "react-native-paper";
 import imageMember from "../assets/leafMember.png";
 export const UserInfo = (props) => {
-  console.log("------------", props);
   const { user } = props;
   return (
     <View>

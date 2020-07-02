@@ -81,7 +81,7 @@ export class HomeScreen extends React.Component {
           )}
 
           {this.props.signedIn && <RecentLessons navigation={navigation} />}
-          {this.props.signedIn && <MyCourses />}
+          {/* {this.props.signedIn && <MyCourses />} */}
 
           <BrowseTopic navigation={navigation} />
         </ScrollView>
