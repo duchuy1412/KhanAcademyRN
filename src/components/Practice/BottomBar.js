@@ -59,9 +59,9 @@ const BottomBar = (props) => {
                 justifyContent: "center",
               }}
             >
-              {!correct ? (
+              {correct === null ? (
                 <Button
-                  color={Colors.blue500}
+                  color={colors.primary}
                   mode="contained"
                   onPress={() => {
                     dispatch(questionActions.checkAnswer());
@@ -69,9 +69,20 @@ const BottomBar = (props) => {
                 >
                   {_l.t("Check")}
                 </Button>
-              ) : !endPractice ? (
+              ) : correct === false ? (
                 <Button
-                  color={Colors.blue500}
+                  color={colors.primary}
+                  mode="contained"
+                  onPress={() => {
+                    dispatch(questionActions.tryAgain());
+                  }}
+                >
+                  {/* {_l.t("Finish")} */}
+                  Try again
+                </Button>
+              ) : endPractice === false ? (
+                <Button
+                  color={colors.primary}
                   mode="contained"
                   onPress={() => {
                     dispatch(questionActions.nextQuestion());
@@ -81,7 +92,7 @@ const BottomBar = (props) => {
                 </Button>
               ) : (
                 <Button
-                  color={Colors.blue500}
+                  color={colors.primary}
                   mode="contained"
                   onPress={() => {
                     navigation.goBack();
