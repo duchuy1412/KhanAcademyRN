@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View, ScrollView, StyleSheet, Text, Image } from "react-native";
 import InputAnswer from "./InputAnswer";
+import SelectOne from "./SelectOne";
 import { useTheme } from "react-native-paper";
 
 const QuestionArea = (props) => {
@@ -13,7 +14,7 @@ const QuestionArea = (props) => {
         backgroundColor: colors.background,
         flex: 1,
         alignSelf: "stretch",
-        padding: 30,
+        padding: 18,
       }}
     >
       <ScrollView style={styles.question}>
@@ -22,7 +23,11 @@ const QuestionArea = (props) => {
           style={styles.imageContent}
           source={question.image ? { uri: question.image } : null}
         />
-        <InputAnswer />
+        {question.questionType === "INPUT_ANSWER" ? (
+          <InputAnswer />
+        ) : question.questionType === "SELECT_ONE" ? (
+          <SelectOne />
+        ) : null}
       </ScrollView>
     </View>
   );

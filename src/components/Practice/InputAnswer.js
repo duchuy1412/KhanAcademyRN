@@ -17,7 +17,7 @@ const InputAnswer = (props) => {
     <View style={styles.answer}>
       <Text style={styles.content}>{_l.t("Type a number in the box")}</Text>
       <TextInput
-        error={correct === false ? true : false}
+        disabled={correct !== null ? true : false}
         mode="outlined"
         style={{
           width: 100,

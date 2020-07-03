@@ -4,10 +4,15 @@ export const FETCH_QUESTIONS_FAILURE = "FETCH_QUESTIONS_FAILURE";
 export const NEXT_QUESTION = "NEXT_QUESTION";
 export const CHECK_ANSWER = "CHECK_ANSWER";
 export const RESET = "RESET";
+export const TRY_AGAIN = "TRY_AGAIN";
 export const UPDATE_ANSWER_USER = "UPDATE_ANSWER_USER";
 
 export const reset = () => ({
   type: RESET,
+});
+
+export const tryAgain = () => ({
+  type: TRY_AGAIN,
 });
 
 export const fetchQuestionsBegin = () => ({
