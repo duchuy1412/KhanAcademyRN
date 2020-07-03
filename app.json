@@ -2,7 +2,11 @@
   "expo": {
     "name": "Khan Academy",
     "slug": "KhanAcademyRN",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
@@ -14,7 +18,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "facebookScheme": "fb1186124071747489",
     "facebookAppId": "1186124071747489",
     "facebookDisplayName": "KhanAcademyRN",
@@ -24,6 +30,8 @@
     },
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Khan Academy",
+    "githubUrl": "https://github.com/duchuy1412/KhanAcademyRN"
   }
 }

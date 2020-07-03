@@ -19,10 +19,13 @@ const BottomBar = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <View style={{ backgroundColor: colors.background, elevation: 10 }}>
+    <View
+      style={{ backgroundColor: colors.background, elevation: 10, zIndex: 1 }}
+    >
       <Divider />
       <View
         style={{
+          paddingHorizontal: 10,
           justifyContent: "center",
           backgroundColor: "#fff",
         }}
@@ -58,9 +61,9 @@ const BottomBar = (props) => {
                 justifyContent: "center",
               }}
             >
-              {!correct ? (
+              {correct === null ? (
                 <Button
-                  color={Colors.blue500}
+                  color={colors.primary}
                   mode="contained"
                   onPress={() => {
                     dispatch(questionActions.checkAnswer());
@@ -68,9 +71,20 @@ const BottomBar = (props) => {
                 >
                   {_l.t("Check")}
                 </Button>
-              ) : !endPractice ? (
+              ) : correct === false ? (
                 <Button
-                  color={Colors.blue500}
+                  color={colors.primary}
+                  mode="contained"
+                  onPress={() => {
+                    dispatch(questionActions.tryAgain());
+                  }}
+                >
+                  {/* {_l.t("Finish")} */}
+                  Try again
+                </Button>
+              ) : endPractice === false ? (
+                <Button
+                  color={colors.primary}
                   mode="contained"
                   onPress={() => {
                     dispatch(questionActions.nextQuestion());
@@ -80,7 +94,7 @@ const BottomBar = (props) => {
                 </Button>
               ) : (
                 <Button
-                  color={Colors.blue500}
+                  color={colors.primary}
                   mode="contained"
                   onPress={() => {
                     navigation.goBack();

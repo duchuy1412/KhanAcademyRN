@@ -51,7 +51,7 @@ export class SignIn extends Component {
       // APP_ID
       await Facebook.initializeAsync("1186124071747489");
       const { type, token } = await Facebook.logInWithReadPermissionsAsync({
-        permissions: ["public_profile"],
+        permissions: ["public_profile", "email"],
       });
       if (type === "success") {
         await firebase
@@ -82,7 +82,7 @@ export class SignIn extends Component {
             this.props.dispatch(AuthActions.handleSignIn(currentUser));
           }
           ToastAndroid.show("Sign in successfully", ToastAndroid.SHORT);
-          this.props.navigation.navigate("Settings");
+          this.props.navigation.navigate("TabNavigator");
         })
         .catch((e) => {
           Alert.alert("Error", e.message);

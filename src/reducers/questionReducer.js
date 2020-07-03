@@ -6,6 +6,7 @@ import {
   UPDATE_ANSWER_USER,
   CHECK_ANSWER,
   RESET,
+  TRY_AGAIN,
 } from "../actions/questionAction";
 
 const initialState = {
@@ -59,6 +60,14 @@ export default function questionReducer(state = initialState, action) {
         currentQuestion: state.questions[state.indexCurrentQuestion + 1],
         indexCurrentQuestion: state.indexCurrentQuestion + 1,
       };
+
+    case TRY_AGAIN:
+      return {
+        ...state,
+        correct: null,
+        answerOfUser: "",
+      };
+
     case UPDATE_ANSWER_USER:
       //clear state "correct" while inputing
       if (state.correct !== null) {
@@ -74,35 +83,35 @@ export default function questionReducer(state = initialState, action) {
         answerOfUser: action.answerOfUser,
       };
     case CHECK_ANSWER:
-      switch (state.currentQuestion.questionType) {
-        case "INPUT_ANSWER":
-          // condition: answer correct
-          if (state.currentQuestion.correctAnswer == state.answerOfUser) {
-            // check for finish practice to show "Finish" button
-            if (state.indexCurrentQuestion === state.questions.length - 1) {
-              return {
-                ...state,
-                correct: true,
-                endPractice: true,
-              };
-            } else {
-              // return correct is true, "Next" button will be shown
-              return {
-                ...state,
-                correct: true,
-              };
-            }
-          } else {
-            //handling when answer is incorrect
-            return {
-              ...state,
-              correct: false,
-            };
-          }
-
-        default:
-          return { state };
+      // switch (state.currentQuestion.questionType) {
+      //   case "INPUT_ANSWER":
+      // condition: answer correct
+      if (state.currentQuestion.correctAnswer == state.answerOfUser) {
+        // check for finish practice to show "Finish" button
+        if (state.indexCurrentQuestion === state.questions.length - 1) {
+          return {
+            ...state,
+            correct: true,
+            endPractice: true,
+          };
+        } else {
+          // return correct is true, "Next" button will be shown
+          return {
+            ...state,
+            correct: true,
+          };
+        }
+      } else {
+        //handling when answer is incorrect
+        return {
+          ...state,
+          correct: false,
+        };
       }
+
+    //   default:
+    //     return { state };
+    // }
 
     default:
       return state;

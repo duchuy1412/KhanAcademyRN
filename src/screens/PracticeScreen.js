@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Text, ToastAndroid } from "react-native";
+import { View, ToastAndroid, Modal, Alert, Text } from "react-native";
 import _l from "../lib/i18n";
 import BottomBar from "../components/Practice/BottomBar";
 import QuestionArea from "../components/Practice/QuestionArea";
 import { connect } from "react-redux";
 import * as questionActions from "../actions/questionAction";
 import UnderContruction from "../components/UnderContruction";
+import ModalPractice from "../components/Practice/ModalPractice";
 
 class PracticeScreen extends React.Component {
   constructor(props) {
@@ -15,8 +16,12 @@ class PracticeScreen extends React.Component {
   componentDidMount() {
     const { question } = this.props.route.params.practiceItem;
     this.props.saveQuestionToState(question);
-    this.props.reset();
+    // this.props.reset();
     this.props.onNextQuestion();
+  }
+
+  componentWillUnmount() {
+    this.props.reset();
   }
 
   render() {
@@ -29,17 +34,14 @@ class PracticeScreen extends React.Component {
       error,
     } = this.props.questionState;
 
-    if (correct === false) {
-      ToastAndroid.show(_l.t("Try again!"), ToastAndroid.SHORT);
-    } else if (correct === true) {
-      ToastAndroid.show(_l.t("Great work!"), ToastAndroid.SHORT);
-    }
-
     navigation.setOptions({ tabBarVisible: false });
 
     return question ? (
       <View style={{ flex: 1, justifyContent: "space-between" }}>
-        {currentQuestion ? <QuestionArea question={currentQuestion} /> : null}
+        <View style={{ flex: 1 }}>
+          {currentQuestion ? <QuestionArea question={currentQuestion} /> : null}
+          <ModalPractice isCorrect={correct} />
+        </View>
         <BottomBar numberQuestion={Object.keys(question).length} />
       </View>
     ) : (

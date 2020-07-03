@@ -10,7 +10,9 @@ import BrowseTopic from "../components/BrowseTopic/BrowseTopic";
 import Spinner from "react-native-loading-spinner-overlay";
 import firebase from "../lib/firebase";
 import MyCourses from "../components/MyCourses/MyCourses";
-export default class HomeScreen extends React.Component {
+import { connect } from "react-redux";
+import WelcomeHomeScreen from "../components/WelcomeHomeScreen";
+export class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
 
@@ -74,13 +76,22 @@ export default class HomeScreen extends React.Component {
             />
           }
         >
-          <RecentLessons navigation={navigation} />
-          <MyCourses />
-          <BrowseTopic data={this.state.data} navigation={navigation} />
+          {!this.props.signedIn && (
+            <WelcomeHomeScreen navigation={navigation} />
+          )}
+
+          {this.props.signedIn && <RecentLessons navigation={navigation} />}
+          {/* {this.props.signedIn && <MyCourses />} */}
+
+          <BrowseTopic navigation={navigation} />
         </ScrollView>
       </View>
     );
   }
 }
-
+const mapStateToProps = (state) => ({
+  signedIn: state.authReducer.signedIn,
+});
+const mapDispatchToProps = () => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
 const styles = StyleSheet.create({});
