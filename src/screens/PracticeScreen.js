@@ -34,20 +34,14 @@ class PracticeScreen extends React.Component {
       error,
     } = this.props.questionState;
 
-    if (correct !== null) {
-      if (correct === false) {
-        ToastAndroid.show(_l.t("Try again!"), ToastAndroid.SHORT);
-      } else if (correct === true) {
-        ToastAndroid.show(_l.t("Great work!"), ToastAndroid.SHORT);
-      }
-    }
-
     navigation.setOptions({ tabBarVisible: false });
 
     return question ? (
       <View style={{ flex: 1, justifyContent: "space-between" }}>
-        {currentQuestion ? <QuestionArea question={currentQuestion} /> : null}
-        <ModalPractice />
+        <View style={{ flex: 1 }}>
+          {currentQuestion ? <QuestionArea question={currentQuestion} /> : null}
+          <ModalPractice isCorrect={correct} />
+        </View>
         <BottomBar numberQuestion={Object.keys(question).length} />
       </View>
     ) : (

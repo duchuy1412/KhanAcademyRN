@@ -19,7 +19,9 @@ const BottomBar = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <View style={{ backgroundColor: colors.background, elevation: 10 }}>
+    <View
+      style={{ backgroundColor: colors.background, elevation: 10, zIndex: 1 }}
+    >
       <Divider />
       <View
         style={{
