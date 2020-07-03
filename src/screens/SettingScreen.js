@@ -5,6 +5,7 @@ import _l from "../lib/i18n";
 import { connect } from "react-redux";
 import firebase from "../lib/firebase";
 import * as AuthActions from "../actions/authActions";
+import { UserInfo } from "../components/UserInfo";
 export class SettingScreen extends React.Component {
   // componentDidMount() {
   //   let currentUser = firebase.auth().currentUser;
@@ -34,25 +35,34 @@ export class SettingScreen extends React.Component {
       <View style={{ flex: 1 }}>
         {!signedIn ? (
           <List.Section>
+            <Divider />
+            
             <List.Item
               style={styles.listItem}
               title={_l.t("Sign in")}
               titleStyle={styles.signIn}
               onPress={() => navigation.navigate("Welcome")}
             />
+            <Divider />
           </List.Section>
         ) : (
-          <List.Section>
-            <List.Item
-              style={styles.listItem}
-              title={_l.t("Sign out")}
-              titleStyle={styles.signOut}
-              onPress={this.handleSignOut}
-            />
-          </List.Section>
+          <View>
+            <List.Section>
+              <UserInfo user={user} />
+              <Divider />
+              <List.Item
+                style={styles.listItem}
+                title={_l.t("Sign out")}
+                titleStyle={styles.signOut}
+                onPress={this.handleSignOut}
+              />
+              <Divider />
+            </List.Section>
+          </View>
         )}
 
         <List.Section>
+          <Divider />
           <List.Item
             style={styles.listItem}
             title={_l.t("Language & Regions")}

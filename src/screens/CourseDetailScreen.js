@@ -63,13 +63,14 @@ class CourseDetailScreen extends React.Component {
                     icon={item.icon}
                     upNext={false}
                     points={0} // Pass current point of lesson here
-                    maxPoints={lessons[index].points}
+                    maxPoints={1300}
                     units={item.units}
                     onPressItem={() => {
                       navigation.push("Lesson", {
                         lessonName: item.name,
                         lessonPoints: lessons[index].points,
                         units: item.units,
+                        lesson: item,
                       });
                     }}
                   />

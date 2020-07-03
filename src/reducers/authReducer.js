@@ -10,7 +10,13 @@ export default function authReducer(state = initState, action) {
     case AuthActions.AUTH_SIGNIN:
       return {
         ...state,
-        user: action.user,
+        user: {
+          displayName: action.user.displayName,
+          email: action.user.email,
+          photoURL: action.user.photoURL,
+          refreshToken: action.user.refreshToken,
+          uid: action.user.uid,
+        },
         signedIn: true,
       };
     case AuthActions.AUTH_SIGNOUT:

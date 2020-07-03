@@ -23,6 +23,20 @@ function Home() {
   );
 }
 
+function Bookmarks() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Bookmarks" component={Screen.BookmarksScreen} />
+    </HomeStack.Navigator>
+  );
+}
+function Search() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Search" component={Screen.SearchScreen} />
+    </HomeStack.Navigator>
+  );
+}
 const Tab = createMaterialBottomTabNavigator();
 
 function TabNavigator() {
@@ -45,7 +59,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Search"
-        component={Screen.SearchScreen}
+        component={Search}
         options={{
           tabBarLabel: _l.t("Search"),
           tabBarIcon: ({ color }) => (
@@ -55,7 +69,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Bookmarks"
-        component={Screen.BookmarksScreen}
+        component={Bookmarks}
         options={{
           tabBarLabel: _l.t("Bookmarks"),
           tabBarIcon: ({ color }) => (

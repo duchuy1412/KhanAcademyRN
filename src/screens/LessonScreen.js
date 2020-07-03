@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ToastAndroid } from "react-native";
+import { View, ToastAndroid, Alert } from "react-native";
 import _l from "../lib/i18n";
 import { Divider, List, Colors, ProgressBar } from "react-native-paper";
 import { connect } from "react-redux";
@@ -9,14 +9,95 @@ import LessonPracticeItem from "../components/Lesson/LessonPracticeItem";
 import { MaterialIcons } from "@expo/vector-icons";
 import ProgressingRow from "../components/List/ProgressingRow";
 import UnderContruction from "../components/UnderContruction";
-
+import * as UserActions from "../actions/userActions";
 class LessonScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isBookmarkedLesson: false,
+      bookmarksLesson: [],
+    };
   }
 
-  componentDidMount() {}
+  async componentDidMount() {
+    await this.fetchDataBookmark();
+    // this.setState({
+    //   isBookmarkedLesson: this.state.bookmarksLesson.find(
+    //     (e) => e.key === this.props.route.params.lesson.key
+    //   ),
+    // });
+  }
 
+  fetchDataBookmark = async () => {
+    const { user } = this.props;
+    if (user.uid) {
+      fetch(
+        "https://khanacademyrn.firebaseio.com/users/" +
+          user.uid +
+          "/bookmarks.json"
+      )
+        .then((res) => res.json())
+        .then((json) => {
+          this.setState({
+            bookmarksLesson: (json && json.lessons) || [],
+          });
+        })
+        .catch((e) => {
+          Alert.alert("Error", e.toString());
+        });
+    }
+  };
+  handlePressBookmarkLesson = () => {
+    const { navigation, route } = this.props;
+    const { lessonName, lessonPoints, units, lesson } = route.params;
+
+    if (!this.props.signedIn) {
+      ToastAndroid.show(
+        "You need Sign in or Sign up to use Bookmarks feature!",
+        ToastAndroid.LONG
+      );
+      return;
+    }
+
+    this.fetchDataBookmark();
+
+    this.setState(
+      { isBookmarkedLesson: !this.state.isBookmarkedLesson },
+      () => {
+        if (this.state.isBookmarkedLesson) {
+          this.props.dispatch(
+            UserActions.storeDataToDB(this.props.user.uid, {
+              bookmarks: {
+                lessons: [...this.state.bookmarksLesson, lesson],
+              },
+            })
+          );
+          ToastAndroid.show(
+            `Saved "${lessonName}" to Bookmarks!`,
+            ToastAndroid.SHORT
+          );
+        } else {
+          this.props.dispatch(
+            UserActions.storeDataToDB(this.props.user.uid, {
+              bookmarks: {
+                lessons: this.state.bookmarksLesson.filter(
+                  (e) => e.key !== lesson.key
+                ),
+              },
+            })
+          );
+          ToastAndroid.show(
+            `Deleted "${lessonName}" to Bookmarks!`,
+            ToastAndroid.SHORT
+          );
+        }
+      }
+    );
+  };
+
+  hanldeBookmarkUnit = () => {
+    ToastAndroid.show("Saved to Bookmarks!", ToastAndroid.SHORT);
+  };
   render() {
     // const { error, loading, lessons } = this.props;
     const { navigation, route } = this.props;
@@ -25,16 +106,22 @@ class LessonScreen extends React.Component {
     //Update header title
     navigation.setOptions({
       title: lessonName,
-      headerRight: () => (
-        <MaterialIcons
-          name="bookmark-border"
-          size={30}
-          color={Colors.blue500}
-          onPress={() => {
-            ToastAndroid.show("Saved into Bookmarks!", ToastAndroid.SHORT);
-          }}
-        />
-      ),
+      headerRight: () =>
+        this.state.isBookmarkedLesson ? (
+          <MaterialIcons
+            name="bookmark"
+            size={30}
+            color={Colors.blue500}
+            onPress={this.handlePressBookmarkLesson}
+          />
+        ) : (
+          <MaterialIcons
+            name="bookmark-border"
+            size={30}
+            color={Colors.blue500}
+            onPress={this.handlePressBookmarkLesson}
+          />
+        ),
       headerRightContainerStyle: {
         padding: 10,
       },
@@ -63,12 +150,7 @@ class LessonScreen extends React.Component {
                 <List.Section key={index}>
                   <HeaderSection
                     title={unit.name}
-                    onBookmark={() =>
-                      ToastAndroid.show(
-                        "Saved into Bookmarks!",
-                        ToastAndroid.SHORT
-                      )
-                    }
+                    onBookmark={this.hanldeBookmarkUnit}
                   />
                   <Divider />
                   {learn
@@ -104,6 +186,7 @@ class LessonScreen extends React.Component {
                         );
                       })
                     : null}
+                  <Divider />
                 </List.Section>
               );
             })
@@ -114,6 +197,8 @@ class LessonScreen extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  signedIn: state.authReducer.signedIn,
+  user: state.authReducer.user,
   lessons: state.lessonReducer.items,
   loading: state.lessonReducer.loading,
   error: state.lessonReducer.error,

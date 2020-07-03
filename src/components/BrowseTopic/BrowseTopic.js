@@ -5,8 +5,27 @@ import { Divider, List } from "react-native-paper";
 import _l from "../../lib/i18n";
 
 class BrowseTopic extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: [],
+    };
+  }
+
+  async componentDidMount() {
+    await fetch("https://khanacademyrn.firebaseio.com/topic.json")
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({ data: json });
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  }
   render() {
-    const { navigation, data } = this.props;
+    const { navigation } = this.props;
+    let { data } = this.state;
     return (
       <View style={{ marginTop: 0 }}>
         <List.Section style={styles.container}>
@@ -23,6 +42,7 @@ class BrowseTopic extends React.Component {
                 data={item}
                 key={item.key}
                 inset={true}
+                icon={item.icon}
                 onPressItem={() => {
                   navigation.navigate("CourseList", {
                     topicName: item.name,
