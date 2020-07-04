@@ -33,12 +33,23 @@ export class SignIn extends Component {
           .setPersistence(firebase.auth.Auth.Persistence.LOCAL);
         const credential = firebase.auth.GoogleAuthProvider.credential(
           data.idToken,
-          data,
-          accessToken
+          data.accessToken
         );
         const googleProfileData = await firebase
           .auth()
-          .signInWithCredential(credential);
+          .signInWithCredential(credential)
+          .then(() => {
+            let currentUser = firebase.auth().currentUser;
+
+            if (currentUser.uid) {
+              this.props.dispatch(AuthActions.handleSignIn(currentUser));
+            }
+            ToastAndroid.show("Sign in successfully", ToastAndroid.SHORT);
+            this.props.navigation.navigate("TabNavigator");
+          })
+          .catch((e) => {
+            Alert.alert("Error", e.message);
+          });
 
         alert("Success", googleProfileData);
       }
@@ -60,8 +71,19 @@ export class SignIn extends Component {
         const credential = firebase.auth.FacebookAuthProvider.credential(token);
         const facebookProfileData = await firebase
           .auth()
-          .signInWithCredential(credential);
-        alert("Success FB", facebookProfileData);
+          .signInWithCredential(credential)
+          .then(() => {
+            let currentUser = firebase.auth().currentUser;
+
+            if (currentUser.uid) {
+              this.props.dispatch(AuthActions.handleSignIn(currentUser));
+            }
+            ToastAndroid.show("Sign in successfully", ToastAndroid.SHORT);
+            this.props.navigation.navigate("TabNavigator");
+          })
+          .catch((e) => {
+            Alert.alert("Error", e.message);
+          });
       }
     } catch ({ message }) {
       alert(`Facebook Login Error: ${message}`);
@@ -69,7 +91,6 @@ export class SignIn extends Component {
   };
 
   handleOnPressSignIn = () => {
-    console.log(this.state.email + " " + this.state.password);
     if (this.validateInput()) {
       const { email, password } = this.state;
       firebase
