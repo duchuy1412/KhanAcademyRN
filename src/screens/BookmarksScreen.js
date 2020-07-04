@@ -2,7 +2,6 @@ import React from "react";
 import {
   View,
   Text,
-  Button,
   StyleSheet,
   Alert,
   RefreshControl,
@@ -14,7 +13,7 @@ import {
   FlatList,
 } from "react-native-gesture-handler";
 import { connect } from "react-redux";
-import { List, Divider, Title } from "react-native-paper";
+import { List, Divider, Title, Button } from "react-native-paper";
 import _l from "../lib/i18n";
 import LessonRow from "../components/List/LessonRow";
 import bookmarkImage from "../assets/bookmark-ribbon.png";
@@ -72,7 +71,7 @@ export class BookmarksScreen extends React.Component {
           }}
         >
           <Image source={bookmarkImage} resizeMode="contain" />
-          <Title>You have no bookmarks.</Title>
+          <Title>{_l.t("You have no bookmarks")}</Title>
         </View>
       );
     }
@@ -113,6 +112,7 @@ export class BookmarksScreen extends React.Component {
 const mapStateToProps = (state) => ({
   signedIn: state.authReducer.signedIn,
   user: state.authReducer.user,
+  // bookmarks: state.userReducer.bookmarks,
 });
 const mapDispatchToProps = () => ({});
 

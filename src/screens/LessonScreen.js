@@ -94,6 +94,10 @@ class LessonScreen extends React.Component {
         }
       }
     );
+
+    // this.props.dispatch(
+    //   UserActions.updateBookmark([...this.state.bookmarksLesson, lesson])
+    // );
   };
 
   hanldeBookmarkUnit = () => {

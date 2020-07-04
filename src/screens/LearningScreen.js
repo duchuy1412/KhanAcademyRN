@@ -30,7 +30,6 @@ export class LearningScreen extends Component {
   componentDidMount() {
     const { navigation, route } = this.props;
     const { learningItem, unit } = route.params;
-    console.log("-----UNIT-->", unit);
     this.setState({
       learn: unit["learn"],
       practice: unit["practice"],

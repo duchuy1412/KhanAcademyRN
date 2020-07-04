@@ -54,6 +54,7 @@ i18n.translations = {
     "Try again!": "Try again!",
     "Sign in with Google": "Sign in with Google",
     "Sign in with Facebook": "Sign in with Facebook",
+    "You have no bookmarks": "You have no bookmarks.",
   },
   vi: {
     Cancel: "Huỷ",
@@ -100,6 +101,7 @@ i18n.translations = {
     "Try again!": "Thử lại!",
     "Sign in with Google": "Đăng nhập bằng Google",
     "Sign in with Facebook": "Đăng nhập bằng Facebook",
+    "You have no bookmarks": "Bạn chưa có mục đánh dấu nào.",
   },
 };
 
