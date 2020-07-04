@@ -10,6 +10,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import ProgressingRow from "../components/List/ProgressingRow";
 import UnderContruction from "../components/UnderContruction";
 import * as UserActions from "../actions/userActions";
+import { ScrollView } from "react-native-gesture-handler";
 class LessonScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -141,56 +142,61 @@ class LessonScreen extends React.Component {
           <UnderContruction />
         )}
 
-        {units
-          ? units.map((unit, index) => {
-              let learn = unit["learn"];
-              let practice = unit["practice"];
+        <ScrollView>
+          {units
+            ? units.map((unit, index) => {
+                let learn = unit["learn"];
+                let practice = unit["practice"];
 
-              return (
-                <List.Section key={index}>
-                  <HeaderSection
-                    title={unit.name}
-                    onBookmark={this.hanldeBookmarkUnit}
-                  />
-                  <Divider />
-                  {learn
-                    ? learn.map((item, index) => {
-                        return (
-                          <LessonLearnItem
-                            key={item.key}
-                            item={item}
-                            key={index}
-                            onPressItem={() => {
-                              this.props.navigation.navigate("LearningScreen", {
-                                learningItem: item,
-                                unit: unit,
-                              });
-                            }}
-                          />
-                        );
-                      })
-                    : null}
-                  {practice
-                    ? practice.map((item, index) => {
-                        return (
-                          <LessonPracticeItem
-                            key={item.key}
-                            item={item}
-                            key={index}
-                            onPressItem={() =>
-                              navigation.push("Practice", {
-                                practiceItem: item,
-                              })
-                            }
-                          />
-                        );
-                      })
-                    : null}
-                  <Divider />
-                </List.Section>
-              );
-            })
-          : null}
+                return (
+                  <List.Section key={index}>
+                    <HeaderSection
+                      title={unit.name}
+                      onBookmark={this.hanldeBookmarkUnit}
+                    />
+                    <Divider />
+                    {learn
+                      ? learn.map((item, index) => {
+                          return (
+                            <LessonLearnItem
+                              key={item.key}
+                              item={item}
+                              key={index}
+                              onPressItem={() => {
+                                this.props.navigation.navigate(
+                                  "LearningScreen",
+                                  {
+                                    learningItem: item,
+                                    unit: unit,
+                                  }
+                                );
+                              }}
+                            />
+                          );
+                        })
+                      : null}
+                    {practice
+                      ? practice.map((item, index) => {
+                          return (
+                            <LessonPracticeItem
+                              key={item.key}
+                              item={item}
+                              key={index}
+                              onPressItem={() =>
+                                navigation.push("Practice", {
+                                  practiceItem: item,
+                                })
+                              }
+                            />
+                          );
+                        })
+                      : null}
+                    <Divider />
+                  </List.Section>
+                );
+              })
+            : null}
+        </ScrollView>
       </View>
     );
   }

@@ -7,6 +7,7 @@ import * as Facebook from "expo-facebook";
 import * as GoogleSignIn from "expo-google-sign-in";
 import firebase from "../lib/firebase";
 import * as AuthActions from "../actions/authActions";
+import { ScrollView } from "react-native-gesture-handler";
 
 export class SettingScreen extends React.Component {
   handlePressSignUpEmail = () => {
@@ -85,54 +86,56 @@ export class SettingScreen extends React.Component {
     const { navigation } = this.props;
 
     return (
-      <View style={styles.container} theme={{ roundness: 3 }}>
-        <Text style={styles.title}>{_l.t("titleWelcome1")}</Text>
-        <Caption style={styles.caption}>{_l.t("titleWelcome2")}</Caption>
-        <Button
-          icon="google"
-          mode="contained"
-          uppercase={false}
-          contentStyle={{ margin: 8 }}
-          style={styles.button}
-          color={Colors.red900}
-          onPress={this.handleSignInGoogle}
-        >
-          {_l.t("Continue with Google")}
-        </Button>
-        <Button
-          icon="facebook"
-          mode="contained"
-          uppercase={false}
-          contentStyle={{ margin: 8 }}
-          style={styles.button}
-          color={Colors.blue900}
-          onPress={this.handleSignInFacebook}
-        >
-          {_l.t("Continue with Facebook")}
-        </Button>
-        <Button
-          icon="email"
-          mode="contained"
-          contentStyle={{ margin: 8 }}
-          uppercase={false}
-          style={styles.button}
-          onPress={this.handlePressSignUpEmail}
-        >
-          {_l.t("Sign up with email")}
-        </Button>
-        <Caption style={styles.caption}>{_l.t("Already a user?")}</Caption>
-        <Button
-          mode="outlined"
-          uppercase={false}
-          contentStyle={{ margin: 8 }}
-          style={styles.button}
-          onPress={() => {
-            navigation.navigate("Sign in");
-          }}
-        >
-          {_l.t("Sign in")}
-        </Button>
-      </View>
+      <ScrollView>
+        <View style={styles.container} theme={{ roundness: 3 }}>
+          <Text style={styles.title}>{_l.t("titleWelcome1")}</Text>
+          <Caption style={styles.caption}>{_l.t("titleWelcome2")}</Caption>
+          <Button
+            icon="google"
+            mode="contained"
+            uppercase={false}
+            contentStyle={{ margin: 8 }}
+            style={styles.button}
+            color={Colors.red900}
+            onPress={this.handleSignInGoogle}
+          >
+            {_l.t("Continue with Google")}
+          </Button>
+          <Button
+            icon="facebook"
+            mode="contained"
+            uppercase={false}
+            contentStyle={{ margin: 8 }}
+            style={styles.button}
+            color={Colors.blue900}
+            onPress={this.handleSignInFacebook}
+          >
+            {_l.t("Continue with Facebook")}
+          </Button>
+          <Button
+            icon="email"
+            mode="contained"
+            contentStyle={{ margin: 8 }}
+            uppercase={false}
+            style={styles.button}
+            onPress={this.handlePressSignUpEmail}
+          >
+            {_l.t("Sign up with email")}
+          </Button>
+          <Caption style={styles.caption}>{_l.t("Already a user?")}</Caption>
+          <Button
+            mode="outlined"
+            uppercase={false}
+            contentStyle={{ margin: 8 }}
+            style={styles.button}
+            onPress={() => {
+              navigation.navigate("Sign in");
+            }}
+          >
+            {_l.t("Sign in")}
+          </Button>
+        </View>
+      </ScrollView>
     );
   }
 }

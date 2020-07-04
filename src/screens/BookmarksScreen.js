@@ -44,7 +44,6 @@ export class BookmarksScreen extends React.Component {
       )
         .then((res) => res.json())
         .then((json) => {
-          console.log("------JSON---", json);
           this.setState({ bookmarks: json || [] });
         })
         .catch((e) => {

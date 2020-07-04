@@ -7,6 +7,7 @@ import * as Facebook from "expo-facebook";
 import * as GoogleSignIn from "expo-google-sign-in";
 import { connect } from "react-redux";
 import * as AuthActions from "../actions/authActions";
+import { ScrollView } from "react-native-gesture-handler";
 const EMAIL_REGEX = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
 // import { GoogleSignIn } from "expo-google-sign-in";
@@ -127,63 +128,65 @@ export class SignIn extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Button
-          icon="google"
-          mode="contained"
-          uppercase={false}
-          contentStyle={{ margin: 8 }}
-          style={styles.button}
-          color={Colors.red900}
-          onPress={this.handleSignInGoogle}
-        >
-          {_l.t("Sign in with Google")}
-        </Button>
-        <Button
-          icon="facebook"
-          mode="contained"
-          uppercase={false}
-          contentStyle={{ margin: 8 }}
-          style={styles.button}
-          color={Colors.blue900}
-          onPress={this.handleSignInFacebook}
-        >
-          {_l.t("Sign in with Facebook")}
-        </Button>
-        <Caption>{_l.t("OR")}</Caption>
-        <View style={{ width: "100%" }}>
-          <TextInput
-            keyboardType="email-address"
-            style={styles.textInput}
-            label="Email"
-            mode="outlined"
-            textContentType="emailAddress"
-            placeholder={_l.t("Enter an email address")}
-            value={this.state.email}
-            onChangeText={this._onChangeEmail}
-          ></TextInput>
-          <TextInput
-            label={_l.t("Password")}
-            style={styles.textInput}
-            mode="outlined"
-            textContentType="newPassword"
-            placeholder={_l.t("Password")}
-            secureTextEntry={true}
-            value={this.state.password}
-            onChangeText={this._onChangePassword}
-          ></TextInput>
-        </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <Button
+            icon="google"
+            mode="contained"
+            uppercase={false}
+            contentStyle={{ margin: 8 }}
+            style={styles.button}
+            color={Colors.red900}
+            onPress={this.handleSignInGoogle}
+          >
+            {_l.t("Sign in with Google")}
+          </Button>
+          <Button
+            icon="facebook"
+            mode="contained"
+            uppercase={false}
+            contentStyle={{ margin: 8 }}
+            style={styles.button}
+            color={Colors.blue900}
+            onPress={this.handleSignInFacebook}
+          >
+            {_l.t("Sign in with Facebook")}
+          </Button>
+          <Caption>{_l.t("OR")}</Caption>
+          <View style={{ width: "100%" }}>
+            <TextInput
+              keyboardType="email-address"
+              style={styles.textInput}
+              label="Email"
+              mode="outlined"
+              textContentType="emailAddress"
+              placeholder={_l.t("Enter an email address")}
+              value={this.state.email}
+              onChangeText={this._onChangeEmail}
+            ></TextInput>
+            <TextInput
+              label={_l.t("Password")}
+              style={styles.textInput}
+              mode="outlined"
+              textContentType="newPassword"
+              placeholder={_l.t("Password")}
+              secureTextEntry={true}
+              value={this.state.password}
+              onChangeText={this._onChangePassword}
+            ></TextInput>
+          </View>
 
-        <Button
-          mode="contained"
-          uppercase={false}
-          contentStyle={{ margin: 8 }}
-          style={[styles.button, { marginTop: 14 }]}
-          onPress={this.handleOnPressSignIn}
-        >
-          {_l.t("Sign in")}
-        </Button>
-      </View>
+          <Button
+            mode="contained"
+            uppercase={false}
+            contentStyle={{ margin: 8 }}
+            style={[styles.button, { marginTop: 14 }]}
+            onPress={this.handleOnPressSignIn}
+          >
+            {_l.t("Sign in")}
+          </Button>
+        </View>
+      </ScrollView>
     );
   }
 }
