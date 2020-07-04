@@ -116,7 +116,7 @@ export class SignIn extends Component {
           color={Colors.red900}
           onPress={this.handleSignInGoogle}
         >
-          {_l.t("Continue with Google")}
+          {_l.t("Sign in with Google")}
         </Button>
         <Button
           icon="facebook"
@@ -127,7 +127,7 @@ export class SignIn extends Component {
           color={Colors.blue900}
           onPress={this.handleSignInFacebook}
         >
-          {_l.t("Continue with Facebook")}
+          {_l.t("Sign in with Facebook")}
         </Button>
         <Caption>{_l.t("OR")}</Caption>
         <View style={{ width: "100%" }}>
