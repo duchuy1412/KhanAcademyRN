@@ -1,4 +1,5 @@
 import firebase from "../lib/firebase";
+export const UPDATE_BOOKMARK = "UPDATE_BOOKMARK";
 
 export function storeDataToDB(uid, data = {}) {
   return () => {
@@ -8,3 +9,8 @@ export function storeDataToDB(uid, data = {}) {
       .set({ ...data });
   };
 }
+
+export const updateBookmark = (data) => ({
+  type: UPDATE_BOOKMARK,
+  data,
+});

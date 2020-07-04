@@ -17,7 +17,7 @@ export const UserInfo = (props) => {
             style={{
               height: 64,
               width: 64,
-              marginLeft: 0,
+              marginLeft: 8,
             }}
             resizeMode="contain"
           />
