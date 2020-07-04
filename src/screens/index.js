@@ -10,6 +10,7 @@ import CourseDetailScreen from "./CourseDetailScreen";
 import LessonScreen from "./LessonScreen";
 import LearningScreen from "./LearningScreen";
 import PracticeScreen from "./PracticeScreen";
+import LanguageScreen from "./LanguageScreen";
 
 export {
   HomeScreen,
@@ -24,4 +25,5 @@ export {
   LessonScreen,
   LearningScreen,
   PracticeScreen,
+  LanguageScreen,
 };

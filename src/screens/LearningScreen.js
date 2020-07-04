@@ -30,7 +30,6 @@ export class LearningScreen extends Component {
   componentDidMount() {
     const { navigation, route } = this.props;
     const { learningItem, unit } = route.params;
-    console.log("-----UNIT-->", unit);
     this.setState({
       learn: unit["learn"],
       practice: unit["practice"],
@@ -44,7 +43,11 @@ export class LearningScreen extends Component {
     };
   }
   gotoPractice(item) {
-    return () => alert("Practice");
+    const { navigation } = this.props;
+    return () =>
+      navigation.push("Practice", {
+        practiceItem: item,
+      });
   }
   render() {
     const { navigation, route } = this.props;
@@ -80,7 +83,7 @@ export class LearningScreen extends Component {
                 <MaterialIcons
                   name="bookmark-border"
                   size={30}
-                  color={Colors.grey400}
+                  color={Colors.grey500}
                   onPress={() => {
                     ToastAndroid.show(
                       "Saved to Bookmarks!",
@@ -91,14 +94,14 @@ export class LearningScreen extends Component {
                 <Text style={styles.caption}>{_l.t("Bookmarks")}</Text>
               </View>
               <View style={styles.icon}>
-                <MaterialIcons name="share" size={30} color={Colors.grey400} />
+                <MaterialIcons name="share" size={30} color={Colors.grey500} />
                 <Text style={styles.caption}>{_l.t("Share")}</Text>
               </View>
               <View style={styles.icon}>
                 <MaterialIcons
                   name="description"
                   size={30}
-                  color={Colors.grey400}
+                  color={Colors.grey500}
                 />
                 <Text style={styles.caption}>{_l.t("Transcript")}</Text>
               </View>
@@ -145,7 +148,7 @@ export class LearningScreen extends Component {
                   <Feather
                     name="chevron-right"
                     size={24}
-                    color={Colors.grey400}
+                    color={Colors.grey500}
                   />
                 </View>
               )}
@@ -201,7 +204,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     borderBottomWidth: 0.5,
     borderTopWidth: 0.5,
-    borderColor: Colors.grey400,
+    borderColor: Colors.grey300,
   },
   iconRow: {
     backgroundColor: "#fff",
@@ -209,7 +212,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     padding: 4,
     borderBottomWidth: 0.5,
-    borderBottomColor: Colors.grey400,
+    borderBottomColor: Colors.grey300,
     marginBottom: 16,
   },
   icon: {
@@ -218,7 +221,7 @@ const styles = StyleSheet.create({
   },
   caption: {
     marginTop: 0,
-    color: Colors.grey400,
+    color: Colors.grey500,
   },
   subHeader: {
     fontWeight: "bold",
