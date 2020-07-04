@@ -1,8 +1,8 @@
 import * as Localization from "expo-localization";
 import i18n from "i18n-js";
 // Set the key-value pairs for the different languages you want to support.
-// i18n.locale = Localization.locale;
-i18n.locale = "en"; // change to vi if need to use Vietnamese
+i18n.locale = Localization.locale;
+// i18n.locale = "en"; // change to vi if need to use Vietnamese
 
 i18n.fallbacks = true;
 
@@ -71,9 +71,12 @@ i18n.translations = {
     "Sign out": "Đăng xuất",
     "Language & Regions": "Ngôn ngữ & khu vực",
     "Download settings": "Cài đặt tải xuống",
-    titleWelcome1: "A world class education for anyone, anywhere. 100% free",
+    "Already a user?": "Bạn đã có tài khoản?",
+
+    titleWelcome1:
+      "Một nền giáo dục tuyệt vời cho bất cứ ai, bất cứ nơi nào.\n 100% miễn phí",
     titleWelcome2:
-      "We'll keep your progress in sync no matter what phone, device, or computer you're using.",
+      "Chúng tôi giữ tiến trình học tập của bạn đồng bộ trên mọi thiết bị điện thoại, máy tính bảng",
     "Continue with Google": "Tiếp tục với Google",
     "Continue with Facebook": "Tiếp tục với Facebook",
     "Sign up with email": "Đăng ký với email",
@@ -82,7 +85,7 @@ i18n.translations = {
     Password: "Mật khẩu",
     titleSignUp: "Giới thiệu một số thông tin về bạn để tạo một tài khoản mới.",
     "Full name": "Họ và tên",
-    "Confirm Password": "Confirm password",
+    "Confirm Password": "Xác nhận mật khẩu",
     "Up next": "Tiếp theo",
     "Mastery Points": "Điểm thành thạo",
     points: "điểm",

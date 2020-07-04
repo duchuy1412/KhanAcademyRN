@@ -8,7 +8,7 @@
       "web"
     ],
     "version": "1.0.0",
-    "orientation": ["portrait", "landscape"],
+    "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "splash": {
       "image": "./src/assets/splash.png",
@@ -31,7 +31,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "Khan Academy",
+    "description": "App Clone for INT3120 4 - Huy & Hoc",
     "githubUrl": "https://github.com/duchuy1412/KhanAcademyRN"
   }
 }

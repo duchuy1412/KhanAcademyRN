@@ -13,15 +13,9 @@ const recentLessions = [
   },
   {
     key: "2",
-    name: "Counting",
-    icon: "",
-    description: "Counting",
-  },
-  {
-    key: "3",
-    name: "Counting",
-    icon: "",
-    description: "Counting",
+    name: "Physics",
+    icon: "https://i.imgur.com/JztjPsp.png",
+    description: "Physics basic",
   },
 ];
 
@@ -45,6 +39,7 @@ class RecentLessons extends React.Component {
             renderItem={({ item }) => (
               <InfiniteListRow
                 data={item}
+                icon={item.icon}
                 key={item.key}
                 inset={true}
                 onPressItem={() => {
