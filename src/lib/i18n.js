@@ -52,6 +52,8 @@ i18n.translations = {
     Finish: "Finish",
     "Great work!": "Great work!",
     "Try again!": "Try again!",
+    "Sign in with Google": "Sign in with Google",
+    "Sign in with Facebook": "Sign in with Facebook",
   },
   vi: {
     Cancel: "Huỷ",
@@ -96,6 +98,8 @@ i18n.translations = {
     Finish: "Kết thúc",
     "Great work!": "Chính xác!",
     "Try again!": "Thử lại!",
+    "Sign in with Google": "Đăng nhập bằng Google",
+    "Sign in with Facebook": "Đăng nhập bằng Facebook",
   },
 };
 

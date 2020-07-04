@@ -93,6 +93,7 @@ export default function App() {
         <Root.Screen name="Sign up" component={Screen.SignUpScreen} />
         <Root.Screen name="LearningScreen" component={Screen.LearningScreen} />
         <Root.Screen name="Practice" component={Screen.PracticeScreen} />
+        <Root.Screen name="Language" component={Screen.LanguageScreen} />
         <Root.Screen
           options={{ headerShown: false }}
           name="TabNavigator"

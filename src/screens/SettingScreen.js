@@ -36,7 +36,7 @@ export class SettingScreen extends React.Component {
         {!signedIn ? (
           <List.Section>
             <Divider />
-            
+
             <List.Item
               style={styles.listItem}
               title={_l.t("Sign in")}
